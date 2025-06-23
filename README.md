@@ -10,7 +10,8 @@
 
 ## 👨‍💻 About Me
 
-Computer Vision enthusiast and AI developer from Vietnam, currently pursuing Information Technology at Posts and Telecommunications Institute of Technology (PTIT). Passionate about developing AI solutions that bridge the gap between theoretical concepts and real-world applications.
+Computer Vision enthusiast and AI developer from Vietnam, currently pursuing Information Technology at Posts and Telecommunications Institute of Technology (PTIT). Passionate about developing AI solutions that bridge the gap between theoretical concepts and real-world applications.  
+View my portfolio: https://phuchuwu.vercel.app/
 
 ### 🎯 Career Focus
 
