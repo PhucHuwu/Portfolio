@@ -179,6 +179,7 @@ nav.scrolled {
     max-width: 600px;
     margin: 0 auto 2rem;
     animation: slideInUp 1s ease-out 0.4s both;
+    text-align: center;
 }
 
 .cta-button {
@@ -262,6 +263,7 @@ section {
 .about-text {
     font-size: 1.1rem;
     line-height: 1.8;
+    text-align: justify;
 }
 
 /* Projects Section */
@@ -297,6 +299,11 @@ section {
 
 .project-content {
     padding: 1.5rem;
+    text-align: justify;
+}
+
+.project-content p {
+    text-align: justify;
 }
 
 .project-title {
@@ -376,6 +383,10 @@ section {
 
 .contact-item i.fa-graduation-cap {
     color: var(--accent-color);
+}
+
+.contact-item div {
+    text-align: left;
 }
 
 .contact-form {
