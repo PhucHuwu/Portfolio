@@ -72,14 +72,42 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     alert("Opening your mail client...");
 });
 
-// Mobile menu toggle
+// Mobile menu toggle - Updated version
 const mobileMenu = document.querySelector(".mobile-menu");
 const navLinks = document.querySelector(".nav-links");
 
-mobileMenu.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-    mobileMenu.classList.toggle("active");
-});
+if (mobileMenu && navLinks) {
+    mobileMenu.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
+
+        // Prevent body scroll when menu is open
+        if (navLinks.classList.contains("active")) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    });
+
+    // Close mobile menu when clicking on a link
+    const navLinksItems = document.querySelectorAll(".nav-links a");
+    navLinksItems.forEach((link) => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            mobileMenu.classList.remove("active");
+            document.body.style.overflow = "auto";
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!mobileMenu.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove("active");
+            mobileMenu.classList.remove("active");
+            document.body.style.overflow = "auto";
+        }
+    });
+}
 
 // Typing effect for hero title
 function typeWriter(element, text, speed = 100) {
