@@ -1,274 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Portfolio - PhucHuwu</title>
-        <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <div class="liquid-glass-overlay"></div>
-        <div class="bg-animation"></div>
 
-        <!-- Navigation -->
-        <nav id="navbar">
-            <div class="nav-container">
-                <div class="logo">Phuc.H</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="mobile-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - PhucHuwu</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Inline SVG filters for Liquid Glass effect (zero-size, used via CSS filter:url(#...)) -->
+    <svg style="position:absolute; width:0; height:0; pointer-events:none;" aria-hidden="true">
+        <filter id="liquid-glass-filter">
+            <!-- noise source for displacement (animated by JS by changing baseFrequency/seed) -->
+            <feTurbulence id="liquid-turbulence" type="turbulence" baseFrequency="0.008" numOctaves="2" seed="2"
+                result="noise" />
+            <!-- subtle displacement to simulate refraction -->
+            <feDisplacementMap id="liquid-displacement" in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R"
+                yChannelSelector="G" />
+            <!-- brighten slightly for a glossy look -->
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="col" />
+        </filter>
+    </svg>
+</head>
+
+<body>
+    <div class="liquid-glass-overlay"></div>
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Phuc.H</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Phuc Huwu</h1>
-                <p class="subtitle">Computer Vision Engineer & AI Developer</p>
-                <p class="description">
-                    A passionate Computer Vision (CV) enthusiast from Vietnam,
-                    driven by creative problem-solving and research in AI and
-                    deep learning technologies.
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Phuc Huwu</h1>
+            <p class="subtitle">Computer Vision Engineer & AI Developer</p>
+            <p class="description">
+                A passionate Computer Vision (CV) enthusiast from Vietnam,
+                driven by creative problem-solving and research in AI and
+                deep learning technologies.
+            </p>
+            <a href="#contact" class="cta-button">Contact Me</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="PhucHuwu.jpg" alt="Phuc Huwu" class="profile-img" />
+            </div>
+            <div class="about-text">
+                <p style="margin-bottom: 1em; text-align: justify">
+                    Hi there! I'm a Computer Vision enthusiast and AI
+                    developer from Vietnam, currently studying Information
+                    Technology at Posts and Telecommunications Institute of
+                    Technology (PTIT).
                 </p>
-                <a href="#contact" class="cta-button">Contact Me</a>
+                <p style="margin-bottom: 1em; text-align: justify">
+                    My journey in AI and Computer Vision started with a
+                    fascination for how machines can understand and
+                    interpret visual information. I've since developed
+                    expertise in deep learning, computer vision algorithms,
+                    and AI model deployment. My work focuses on creating
+                    practical solutions that bridge the gap between
+                    theoretical AI concepts and real-world applications.
+                </p>
+                <p style="margin-bottom: 1em; text-align: justify">
+                    Beyond coding, I'm passionate about keeping up with the
+                    latest AI research and contributing to open-source
+                    projects. I believe in the power of AI to solve complex
+                    problems and make technology more accessible to
+                    everyone. When I'm not coding, you can find me exploring
+                    new AI papers, experimenting with novel algorithms, or
+                    collaborating with fellow developers on innovative
+                    projects.
+                </p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="fade-in">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <img
-                        src="PhucHuwu.jpg"
-                        alt="Phuc Huwu"
-                        class="profile-img"
-                    />
+    <!-- Projects Section -->
+    <section id="projects" class="fade-in">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-robot"></i>
                 </div>
-                <div class="about-text">
-                    <p style="margin-bottom: 1em; text-align: justify">
-                        Hi there! I'm a Computer Vision enthusiast and AI
-                        developer from Vietnam, currently studying Information
-                        Technology at Posts and Telecommunications Institute of
-                        Technology (PTIT).
+                <div class="project-content">
+                    <h3 class="project-title">TuyenSinhGPT</h3>
+                    <p>
+                        This project develops an AI model that provides
+                        information about university admission scores, exam
+                        subject combinations, and admission information for
+                        universities in Vietnam.
                     </p>
-                    <p style="margin-bottom: 1em; text-align: justify">
-                        My journey in AI and Computer Vision started with a
-                        fascination for how machines can understand and
-                        interpret visual information. I've since developed
-                        expertise in deep learning, computer vision algorithms,
-                        and AI model deployment. My work focuses on creating
-                        practical solutions that bridge the gap between
-                        theoretical AI concepts and real-world applications.
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">RAG</span>
+                        <span class="tech-tag">SentenceTransformer</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">FAISS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/PhucHuwu/TuyenSinhGPT" class="project-link"><i
+                                class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Distance Estimation</h3>
+                    <p>
+                        A Python-based quadratic nonlinear regression model
+                        for estimating hand-to-camera distance from 2D
+                        images.
                     </p>
-                    <p style="margin-bottom: 1em; text-align: justify">
-                        Beyond coding, I'm passionate about keeping up with the
-                        latest AI research and contributing to open-source
-                        projects. I believe in the power of AI to solve complex
-                        problems and make technology more accessible to
-                        everyone. When I'm not coding, you can find me exploring
-                        new AI papers, experimenting with novel algorithms, or
-                        collaborating with fellow developers on innovative
-                        projects.
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">MediaPipe</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">NumPy</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/PhucHuwu/Distance_estimation" class="project-link"><i
+                                class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Vision Pointer</h3>
+                    <p>
+                        Eye Control Pointer is a computer vision application
+                        that tracks eye movements to control the mouse
+                        cursor, it enables hands-free interaction by moving
+                        the cursor with eye motion and performing clicks by
+                        blinking, enhancing accessibility and usability.
                     </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="fade-in">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-robot"></i>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">MediaPipe</span>
                     </div>
-                    <div class="project-content">
-                        <h3 class="project-title">TuyenSinhGPT</h3>
-                        <p>
-                            This project develops an AI model that provides
-                            information about university admission scores, exam
-                            subject combinations, and admission information for
-                            universities in Vietnam.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">RAG</span>
-                            <span class="tech-tag">SentenceTransformer</span>
-                            <span class="tech-tag">NumPy</span>
-                            <span class="tech-tag">FAISS</span>
-                        </div>
-                        <div class="project-links">
-                            <a
-                                href="https://github.com/PhucHuwu/TuyenSinhGPT"
-                                class="project-link"
-                                ><i class="fab fa-github"></i> GitHub</a
-                            >
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Distance Estimation</h3>
-                        <p>
-                            A Python-based quadratic nonlinear regression model
-                            for estimating hand-to-camera distance from 2D
-                            images.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">OpenCV</span>
-                            <span class="tech-tag">MediaPipe</span>
-                            <span class="tech-tag">Matplotlib</span>
-                            <span class="tech-tag">NumPy</span>
-                        </div>
-                        <div class="project-links">
-                            <a
-                                href="https://github.com/PhucHuwu/Distance_estimation"
-                                class="project-link"
-                                ><i class="fab fa-github"></i> GitHub</a
-                            >
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Vision Pointer</h3>
-                        <p>
-                            Eye Control Pointer is a computer vision application
-                            that tracks eye movements to control the mouse
-                            cursor, it enables hands-free interaction by moving
-                            the cursor with eye motion and performing clicks by
-                            blinking, enhancing accessibility and usability.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">OpenCV</span>
-                            <span class="tech-tag">MediaPipe</span>
-                        </div>
-                        <div class="project-links">
-                            <a
-                                href="https://github.com/PhucHuwu/Vision_Pointer"
-                                class="project-link"
-                                ><i class="fab fa-github"></i> GitHub</a
-                            >
-                        </div>
+                    <div class="project-links">
+                        <a href="https://github.com/PhucHuwu/Vision_Pointer" class="project-link"><i
+                                class="fab fa-github"></i> GitHub</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="fade-in">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div
-                        class="contact-item"
-                        onclick="window.location.href='mailto:phuctranhuu37@gmail.com'"
-                    >
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>phuctranhuu37@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>(+84) 368 334 223</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Hoang Liet, Hoang Mai, Ha Noi, Vietnam</p>
-                        </div>
-                    </div>
-                    <div
-                        class="contact-item"
-                        onclick="window.location.href='https://github.com/PhucHuwu'"
-                    >
-                        <i class="fab fa-github"></i>
-                        <div>
-                            <h4>Github</h4>
-                            <p>PhucHuwu</p>
-                        </div>
-                    </div>
-                    <div
-                        class="contact-item"
-                        onclick="window.location.href='https://facebook.com/Phuchuwu'"
-                    >
-                        <i class="fab fa-facebook"></i>
-                        <div>
-                            <h4>Facebook</h4>
-                            <p>Tran Huwu Phuc</p>
-                        </div>
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item" onclick="window.location.href='mailto:phuctranhuu37@gmail.com'">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>phuctranhuu37@gmail.com</p>
                     </div>
                 </div>
-
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required />
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>(+84) 368 334 223</p>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required />
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Hoang Liet, Hoang Mai, Ha Noi, Vietnam</p>
                     </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input
-                            type="text"
-                            id="subject"
-                            name="subject"
-                            required
-                        />
+                </div>
+                <div class="contact-item" onclick="window.location.href='https://github.com/PhucHuwu'">
+                    <i class="fab fa-github"></i>
+                    <div>
+                        <h4>Github</h4>
+                        <p>PhucHuwu</p>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="5"
-                            required
-                        ></textarea>
+                </div>
+                <div class="contact-item" onclick="window.location.href='https://facebook.com/Phuchuwu'">
+                    <i class="fab fa-facebook"></i>
+                    <div>
+                        <h4>Facebook</h4>
+                        <p>Tran Huwu Phuc</p>
                     </div>
-                    <button type="submit" class="submit-btn">
-                        Send Message
-                    </button>
-                </form>
+                </div>
             </div>
-        </section>
 
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2024 Phuc Huwu. All rights reserved.</p>
-        </footer>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required />
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
 
-        <script src="script.js"></script>
-    </body>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Phuc Huwu. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
 </html>

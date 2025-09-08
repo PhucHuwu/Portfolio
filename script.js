@@ -1,4 +1,3 @@
-// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
         e.preventDefault();
@@ -12,7 +11,52 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     });
 });
 
-// Navbar scroll effect
+/* --- Liquid glass interactive SVG animation --- */
+(function () {
+    const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const turbulence = document.getElementById("liquid-turbulence");
+    const displacement = document.getElementById("liquid-displacement");
+
+    if (!turbulence || !displacement || prefersReduced) return;
+
+    // gentle continuous animation for baseFrequency
+    let t = 0;
+    function animateTurbulence() {
+        t += 0.01;
+        // oscillate baseFrequency subtly to simulate fluid motion
+        const bf = 0.006 + Math.sin(t * 0.8) * 0.002 + Math.random() * 0.0005;
+        turbulence.setAttribute("baseFrequency", bf.toFixed(5));
+        // slowly rotate seed for variety
+        const seed = 2 + Math.floor((Math.sin(t * 0.4) + 1) * 3);
+        turbulence.setAttribute("seed", seed);
+        requestAnimationFrame(animateTurbulence);
+    }
+    requestAnimationFrame(animateTurbulence);
+
+    // pointer-driven displacement scaling (throttled)
+    let last = 0;
+    function onPointer(e) {
+        const now = performance.now();
+        if (now - last < 40) return; // ~25Hz
+        last = now;
+
+        const { clientX, clientY } = e.touches ? e.touches[0] : e;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        // distance from center -> stronger displacement
+        const dx = (clientX - w / 2) / (w / 2);
+        const dy = (clientY - h / 2) / (h / 2);
+        const dist = Math.min(1, Math.sqrt(dx * dx + dy * dy));
+        const scale = 4 + dist * 18; // 4..22
+        displacement.setAttribute("scale", scale.toFixed(2));
+    }
+
+    window.addEventListener("pointermove", onPointer, { passive: true });
+    window.addEventListener("touchmove", onPointer, { passive: true });
+})();
+
 window.addEventListener("scroll", () => {
     const navbar = document.getElementById("navbar");
     if (window.scrollY > 100) {
@@ -22,7 +66,6 @@ window.addEventListener("scroll", () => {
     }
 });
 
-// Fade in animation on scroll
 const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
@@ -40,39 +83,32 @@ document.querySelectorAll(".fade-in").forEach((el) => {
     observer.observe(el);
 });
 
-// Contact form handling
 document.getElementById("contactForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Get form data
     const formData = new FormData(this);
     const name = formData.get("name");
     const email = formData.get("email");
     const subject = formData.get("subject");
     const message = formData.get("message");
 
-    // Simple validation
     if (!name || !email || !subject || !message) {
         alert("Please fill in all fields!");
         return;
     }
 
-    // Create mailto link
     const mailtoLink = `mailto:phuctranhuu37@gmail.com?subject=${encodeURIComponent(
         subject
     )}&body=${encodeURIComponent(
         `From: ${name}\nEmail: ${email}\n\n${message}`
     )}`;
 
-    // Open mail client
     window.location.href = mailtoLink;
 
-    // Reset form
     this.reset();
     alert("Opening your mail client...");
 });
 
-// Mobile menu toggle - Updated version
 const mobileMenu = document.querySelector(".mobile-menu");
 const navLinks = document.querySelector(".nav-links");
 
@@ -81,7 +117,6 @@ if (mobileMenu && navLinks) {
         navLinks.classList.toggle("active");
         mobileMenu.classList.toggle("active");
 
-        // Prevent body scroll when menu is open
         if (navLinks.classList.contains("active")) {
             document.body.style.overflow = "hidden";
         } else {
@@ -89,7 +124,6 @@ if (mobileMenu && navLinks) {
         }
     });
 
-    // Close mobile menu when clicking on a link
     const navLinksItems = document.querySelectorAll(".nav-links a");
     navLinksItems.forEach((link) => {
         link.addEventListener("click", () => {
@@ -99,7 +133,6 @@ if (mobileMenu && navLinks) {
         });
     });
 
-    // Close mobile menu when clicking outside
     document.addEventListener("click", (e) => {
         if (!mobileMenu.contains(e.target) && !navLinks.contains(e.target)) {
             navLinks.classList.remove("active");
@@ -109,7 +142,6 @@ if (mobileMenu && navLinks) {
     });
 }
 
-// Typing effect for hero title
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.innerHTML = "";
@@ -125,7 +157,6 @@ function typeWriter(element, text, speed = 100) {
     type();
 }
 
-// Initialize typing effect when page loads
 window.addEventListener("load", () => {
     const heroTitle = document.querySelector(".hero-content h1");
     if (heroTitle) {
@@ -133,7 +164,6 @@ window.addEventListener("load", () => {
     }
 });
 
-// Parallax effect for background
 window.addEventListener("scroll", () => {
     const scrolled = window.pageYOffset;
     const parallax = document.querySelector(".bg-animation");
@@ -141,7 +171,6 @@ window.addEventListener("scroll", () => {
     parallax.style.transform = `translateY(${speed}px)`;
 });
 
-// Add hover effects to project cards
 document.querySelectorAll(".project-card").forEach((card) => {
     card.addEventListener("mouseenter", function () {
         this.style.transform = "translateY(-10px) scale(1.02)";
@@ -152,7 +181,6 @@ document.querySelectorAll(".project-card").forEach((card) => {
     });
 });
 
-// Add click effect to buttons
 document.querySelectorAll(".cta-button, .submit-btn").forEach((button) => {
     button.addEventListener("click", function (e) {
         const ripple = document.createElement("span");

@@ -46,6 +46,64 @@ body {
     transition: background 0.5s;
 }
 
+/* Reusable Liquid Glass utility class */
+.liquid-glass {
+    position: relative;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.02)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15),
+        inset 0 4px 30px rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px) saturate(150%) contrast(1.05);
+    -webkit-backdrop-filter: blur(12px) saturate(150%) contrast(1.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    /* apply SVG displacement filter for browsers that support it */
+    filter: url(#liquid-glass-filter);
+}
+
+.liquid-glass::after {
+    /* soft glossy highlight */
+    content: "";
+    position: absolute;
+    left: -20%;
+    top: -40%;
+    width: 140%;
+    height: 80%;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.14),
+        rgba(255, 255, 255, 0.02) 40%,
+        rgba(255, 255, 255, 0)
+    );
+    transform: rotate(-18deg);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.9;
+    transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.3s ease;
+}
+
+.liquid-glass:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.12),
+        inset 0 6px 40px rgba(255, 255, 255, 0.04);
+}
+
+/* Reduce intensity on small screens for performance */
+@media (max-width: 768px) {
+    .liquid-glass {
+        backdrop-filter: blur(8px) saturate(130%);
+        filter: none; /* avoid heavy SVG filters on mobile */
+    }
+    .liquid-glass::after {
+        opacity: 0.6;
+    }
+}
+
 .bg-animation {
     position: fixed;
     top: 0;
@@ -246,7 +304,7 @@ nav.scrolled {
     background: var(--gradient);
     color: white;
     text-decoration: none;
-    border-radius: 50px;
+    border-radius: 30px;
     font-weight: bold;
     transition: all 0.3s ease;
     animation: slideInUp 1s ease-out 0.6s both;
@@ -298,7 +356,7 @@ section {
 .profile-img {
     width: 100%;
     height: 100%;
-    border-radius: 15px;
+    border-radius: 30px;
     border: 4px solid var(--primary-color);
     object-fit: cover;
     animation: pulse 2s infinite;
@@ -329,7 +387,7 @@ section {
 
 .project-card {
     background: rgba(26, 26, 26, 0.55);
-    border-radius: 15px;
+    border-radius: 30px;
     overflow: hidden;
     border: 1px solid rgba(0, 212, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
@@ -375,7 +433,7 @@ section {
     background: rgba(0, 212, 255, 0.2);
     color: var(--primary-color);
     padding: 0.3rem 0.8rem;
-    border-radius: 20px;
+    border-radius: 30px;
     font-size: 0.8rem;
 }
 
@@ -414,7 +472,7 @@ section {
     gap: 1rem;
     padding: 1rem;
     background: rgba(26, 26, 26, 0.55);
-    border-radius: 10px;
+    border-radius: 30px;
     border: 1px solid rgba(0, 212, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
     backdrop-filter: blur(10px) saturate(160%) contrast(1.05);
@@ -460,7 +518,7 @@ section {
     padding: 1rem;
     background: var(--bg-card);
     border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 8px;
+    border-radius: 30px;
     color: var(--text-light);
     font-size: 1rem;
     transition: all 0.3s ease;
@@ -478,7 +536,7 @@ section {
     background: var(--gradient);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 30px;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
