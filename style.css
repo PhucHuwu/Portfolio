@@ -717,7 +717,6 @@ footer {
     background: rgba(26, 26, 26, 0.55);
     text-align: center;
     padding: 2rem;
-    padding-bottom: 6rem;
     border-top: 1px solid rgba(0, 212, 255, 0.12);
     box-shadow: 0 -4px 32px 0 rgba(31, 38, 135, 0.1);
     backdrop-filter: blur(10px) saturate(160%) contrast(1.05);
