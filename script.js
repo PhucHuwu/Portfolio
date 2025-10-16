@@ -1,4 +1,3 @@
-// Cursor Glow Effect
 const cursorGlow = document.querySelector(".cursor-glow");
 let mouseX = 0,
     mouseY = 0;
@@ -27,7 +26,6 @@ function animateCursor() {
 }
 animateCursor();
 
-// Floating Particles Animation
 const canvas = document.getElementById("particles-canvas");
 const ctx = canvas.getContext("2d");
 
@@ -119,7 +117,6 @@ window.addEventListener("resize", () => {
     initParticles();
 });
 
-// MacOS Dock Magnification Effect
 const dockItems = document.querySelectorAll(".dock-item");
 const dockContainer = document.querySelector(".dock-container");
 
@@ -164,9 +161,6 @@ function resetDock() {
     });
 }
 
-
-
-// Active navigation item based on scroll
 const sections = document.querySelectorAll("section[id]");
 
 function setActiveNav() {
@@ -196,7 +190,6 @@ function setActiveNav() {
 window.addEventListener("scroll", setActiveNav);
 setActiveNav();
 
-// Hide/Show Dock on Footer Scroll
 const dockNav = document.querySelector("#dock-nav");
 const footer = document.querySelector("footer");
 let lastScrollTop = 0;
@@ -209,31 +202,27 @@ function handleDockVisibility() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const isMobile = window.innerWidth <= 768;
 
-    // Check if footer is visible in viewport
-    const footerVisible = footerRect.top < windowHeight && footerRect.bottom > 0;
-    
-    // Check if scrolling down
+    const footerVisible =
+        footerRect.top < windowHeight && footerRect.bottom > 0;
+
     const scrollingDown = scrollTop > lastScrollTop;
-    
+
     if (footerVisible && scrollingDown) {
-        // Hide dock when footer is visible and scrolling down
         dockNav.style.opacity = "0";
         dockNav.style.transform = "translateX(-50%) translateY(20px)";
         dockNav.style.pointerEvents = "none";
     } else {
-        // Show dock when scrolling up or footer not visible
         dockNav.style.opacity = "1";
         dockNav.style.transform = "translateX(-50%) translateY(0)";
         dockNav.style.pointerEvents = "auto";
     }
-    
+
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 }
 
 window.addEventListener("scroll", handleDockVisibility);
 handleDockVisibility();
 
-// Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
         e.preventDefault();
@@ -257,43 +246,39 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
     if (!turbulence || !displacement || prefersReduced) return;
 
-    // gentle continuous animation for baseFrequency
     let t = 0;
     function animateTurbulence() {
         t += 0.01;
-        // oscillate baseFrequency subtly to simulate fluid motion
+
         const bf = 0.006 + Math.sin(t * 0.8) * 0.002 + Math.random() * 0.0005;
         turbulence.setAttribute("baseFrequency", bf.toFixed(5));
-        // slowly rotate seed for variety
+
         const seed = 2 + Math.floor((Math.sin(t * 0.4) + 1) * 3);
         turbulence.setAttribute("seed", seed);
         requestAnimationFrame(animateTurbulence);
     }
     requestAnimationFrame(animateTurbulence);
 
-    // pointer-driven displacement scaling (throttled)
     let last = 0;
     function onPointer(e) {
         const now = performance.now();
-        if (now - last < 40) return; // ~25Hz
+        if (now - last < 40) return;
         last = now;
 
         const { clientX, clientY } = e.touches ? e.touches[0] : e;
         const w = window.innerWidth;
         const h = window.innerHeight;
-        // distance from center -> stronger displacement
+
         const dx = (clientX - w / 2) / (w / 2);
         const dy = (clientY - h / 2) / (h / 2);
         const dist = Math.min(1, Math.sqrt(dx * dx + dy * dy));
-        const scale = 4 + dist * 18; // 4..22
+        const scale = 4 + dist * 18;
         displacement.setAttribute("scale", scale.toFixed(2));
     }
 
     window.addEventListener("pointermove", onPointer, { passive: true });
     window.addEventListener("touchmove", onPointer, { passive: true });
 })();
-
-
 
 const observerOptions = {
     threshold: 0.1,
@@ -337,8 +322,6 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     this.reset();
     alert("Opening your mail client...");
 });
-
-
 
 function typeWriter(element, text, speed = 100) {
     let i = 0;
