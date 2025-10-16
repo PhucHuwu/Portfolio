@@ -196,6 +196,51 @@ function setActiveNav() {
 window.addEventListener("scroll", setActiveNav);
 setActiveNav();
 
+// Hide/Show Dock on Footer Scroll
+const dockNav = document.querySelector("#dock-nav");
+const footer = document.querySelector("footer");
+let lastScrollTop = 0;
+
+function handleDockVisibility() {
+    if (!dockNav || !footer) return;
+
+    const footerRect = footer.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const isMobile = window.innerWidth <= 768;
+
+    // Check if footer is visible in viewport
+    const footerVisible = footerRect.top < windowHeight && footerRect.bottom > 0;
+    
+    // Check if scrolling down
+    const scrollingDown = scrollTop > lastScrollTop;
+    
+    if (footerVisible && scrollingDown) {
+        // Hide dock when footer is visible and scrolling down
+        dockNav.style.opacity = "0";
+        if (isMobile) {
+            dockNav.style.transform = "translateY(20px)";
+        } else {
+            dockNav.style.transform = "translateX(-50%) translateY(20px)";
+        }
+        dockNav.style.pointerEvents = "none";
+    } else {
+        // Show dock when scrolling up or footer not visible
+        dockNav.style.opacity = "1";
+        if (isMobile) {
+            dockNav.style.transform = "translateY(0)";
+        } else {
+            dockNav.style.transform = "translateX(-50%) translateY(0)";
+        }
+        dockNav.style.pointerEvents = "auto";
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+}
+
+window.addEventListener("scroll", handleDockVisibility);
+handleDockVisibility();
+
 // Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {

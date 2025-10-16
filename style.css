@@ -198,7 +198,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .dock-container {
@@ -717,6 +717,7 @@ footer {
     background: rgba(26, 26, 26, 0.55);
     text-align: center;
     padding: 2rem;
+    padding-bottom: 6rem;
     border-top: 1px solid rgba(0, 212, 255, 0.12);
     box-shadow: 0 -4px 32px 0 rgba(31, 38, 135, 0.1);
     backdrop-filter: blur(10px) saturate(160%) contrast(1.05);
@@ -772,7 +773,8 @@ footer {
         width: calc(100% - 20px);
         left: 10px;
         right: 10px;
-        transform: none;
+        transform: translateY(0);
+        transition: opacity 0.3s ease, transform 0.3s ease;
     }
     .dock-container {
         gap: 4px;
@@ -842,6 +844,7 @@ footer {
         width: calc(100% - 16px);
         left: 8px;
         right: 8px;
+        transform: translateY(0);
     }
     .dock-container {
         gap: 2px;
