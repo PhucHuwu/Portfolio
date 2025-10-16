@@ -29,33 +29,47 @@
     <div class="liquid-glass-overlay"></div>
     <div class="bg-animation"></div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">Phuc.H</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+    <!-- MacOS Dock Navigation -->
+    <nav id="dock-nav">
+        <ul class="dock-container">
+            <li class="dock-item" data-tooltip="Home">
+                <a href="#home">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li class="dock-item" data-tooltip="About">
+                <a href="#about">
+                    <i class="fas fa-user"></i>
+                </a>
+            </li>
+            <li class="dock-item" data-tooltip="Projects">
+                <a href="#projects">
+                    <i class="fas fa-code"></i>
+                </a>
+            </li>
+            <li class="dock-item" data-tooltip="Contact">
+                <a href="#contact">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </li>
+        </ul>
     </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Phuc Huwu</h1>
-            <p class="subtitle">Computer Vision Engineer & AI Developer</p>
+            <p class="subtitle">AI Engineering & Python Software Development</p>
             <p class="description">
-                A passionate Computer Vision (CV) enthusiast from Vietnam,
-                driven by creative problem-solving and research in AI and
-                deep learning technologies.
+                A passionate AI Engineering and Python Software Development enthusiast from Vietnam,
+                driven by creative problem-solving and research in AI and deep learning technologies.
             </p>
             <a href="#contact" class="cta-button">Contact Me</a>
         </div>
@@ -109,7 +123,9 @@
                 <div class="project-content">
                     <h3 class="project-title">Vietnamese Public Service Chatbot</h3>
                     <p>
-                        AI chatbot system supporting Vietnamese public administrative services consultation using RAG architecture with FAISS vector database, FastAPI backend, and Sentence Transformers for semantic search optimized for Vietnamese language.
+                        AI chatbot system supporting Vietnamese public administrative services consultation using RAG
+                        architecture with FAISS vector database, FastAPI backend, and Sentence Transformers for semantic
+                        search optimized for Vietnamese language.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
@@ -119,8 +135,8 @@
                         <span class="tech-tag">Groq API</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/PhucHuwu/ChatBot_Dich_vu_cong" class="project-link" target="_blank"><i
-                                class="fab fa-github"></i> GitHub</a>
+                        <a href="https://github.com/PhucHuwu/ChatBot_Dich_vu_cong" class="project-link"
+                            target="_blank"><i class="fab fa-github"></i> GitHub</a>
                         <a href="https://chatbot-dichvucong.vercel.app" class="project-link" target="_blank"><i
                                 class="fas fa-external-link-alt"></i> Demo</a>
                     </div>
@@ -134,7 +150,9 @@
                 <div class="project-content">
                     <h3 class="project-title">Laos eKYC Identity Verification System</h3>
                     <p>
-                        Electronic identity verification (eKYC) system for Lao citizens combining AI chatbot technology, OCR document scanning, and real-time facial recognition with AI Agent orchestration using Z-Ai/GLM-4.5 Tool Calling, REST API, and WebSocket integration.
+                        Electronic identity verification (eKYC) system for Lao citizens combining AI chatbot technology,
+                        OCR document scanning, and real-time facial recognition with AI Agent orchestration using
+                        Z-Ai/GLM-4.5 Tool Calling, REST API, and WebSocket integration.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
@@ -157,7 +175,9 @@
                 <div class="project-content">
                     <h3 class="project-title">CellphoneS Chatbot</h3>
                     <p>
-                        AI chatbot system for product information lookup, policies, and FAQ for CellphoneS using RAG (Retrieval-Augmented Generation) architecture with FAISS vector database, Meta Llama-4 Scout 17B via Groq API, and Flask RESTful API backend.
+                        AI chatbot system for product information lookup, policies, and FAQ for CellphoneS using RAG
+                        (Retrieval-Augmented Generation) architecture with FAISS vector database, Meta Llama-4 Scout 17B
+                        via Groq API, and Flask RESTful API backend.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>

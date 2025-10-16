@@ -119,6 +119,93 @@ window.addEventListener("resize", () => {
     initParticles();
 });
 
+// MacOS Dock Magnification Effect
+const dockItems = document.querySelectorAll(".dock-item");
+const dockContainer = document.querySelector(".dock-container");
+
+dockItems.forEach((item, index) => {
+    item.addEventListener("mouseenter", (e) => {
+        magnifyDock(index);
+    });
+});
+
+if (dockContainer) {
+    dockContainer.addEventListener("mouseleave", () => {
+        resetDock();
+    });
+}
+
+function magnifyDock(hoveredIndex) {
+    dockItems.forEach((item, index) => {
+        const distance = Math.abs(hoveredIndex - index);
+        let scale = 1;
+        let translateY = 0;
+
+        if (distance === 0) {
+            scale = 1.6;
+            translateY = -15;
+        } else if (distance === 1) {
+            scale = 1.3;
+            translateY = -8;
+        } else if (distance === 2) {
+            scale = 1.1;
+            translateY = -3;
+        }
+
+        const link = item.querySelector("a");
+        link.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+    });
+}
+
+function resetDock() {
+    dockItems.forEach((item) => {
+        const link = item.querySelector("a");
+        link.style.transform = "scale(1) translateY(0)";
+    });
+}
+
+// Mobile Menu Toggle
+const mobileToggle = document.querySelector(".mobile-nav-toggle");
+const dockNav = document.querySelector("#dock-nav");
+
+if (mobileToggle && dockNav) {
+    mobileToggle.addEventListener("click", () => {
+        mobileToggle.classList.toggle("active");
+        dockNav.classList.toggle("mobile-active");
+    });
+}
+
+// Active navigation item based on scroll
+const sections = document.querySelectorAll("section[id]");
+
+function setActiveNav() {
+    const scrollY = window.pageYOffset;
+
+    sections.forEach((section) => {
+        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 100;
+        const sectionId = section.getAttribute("id");
+
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            document
+                .querySelectorAll(`.dock-item a[href="#${sectionId}"]`)
+                .forEach((link) => {
+                    link.classList.add("active");
+                });
+        } else {
+            document
+                .querySelectorAll(`.dock-item a[href="#${sectionId}"]`)
+                .forEach((link) => {
+                    link.classList.remove("active");
+                });
+        }
+    });
+}
+
+window.addEventListener("scroll", setActiveNav);
+setActiveNav();
+
+// Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
         e.preventDefault();
@@ -128,6 +215,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
                 behavior: "smooth",
                 block: "start",
             });
+            if (dockNav.classList.contains("mobile-active")) {
+                dockNav.classList.remove("mobile-active");
+                mobileToggle.classList.remove("active");
+            }
         }
     });
 });
@@ -178,14 +269,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     window.addEventListener("touchmove", onPointer, { passive: true });
 })();
 
-window.addEventListener("scroll", () => {
-    const navbar = document.getElementById("navbar");
-    if (window.scrollY > 100) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-});
+
 
 const observerOptions = {
     threshold: 0.1,
@@ -230,38 +314,7 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     alert("Opening your mail client...");
 });
 
-const mobileMenu = document.querySelector(".mobile-menu");
-const navLinks = document.querySelector(".nav-links");
 
-if (mobileMenu && navLinks) {
-    mobileMenu.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-        mobileMenu.classList.toggle("active");
-
-        if (navLinks.classList.contains("active")) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-    });
-
-    const navLinksItems = document.querySelectorAll(".nav-links a");
-    navLinksItems.forEach((link) => {
-        link.addEventListener("click", () => {
-            navLinks.classList.remove("active");
-            mobileMenu.classList.remove("active");
-            document.body.style.overflow = "auto";
-        });
-    });
-
-    document.addEventListener("click", (e) => {
-        if (!mobileMenu.contains(e.target) && !navLinks.contains(e.target)) {
-            navLinks.classList.remove("active");
-            mobileMenu.classList.remove("active");
-            document.body.style.overflow = "auto";
-        }
-    });
-}
 
 function typeWriter(element, text, speed = 100) {
     let i = 0;

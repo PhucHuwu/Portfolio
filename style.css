@@ -191,127 +191,167 @@ body {
     }
 }
 
-nav {
+/* MacOS Dock Navigation */
+#dock-nav {
     position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 1rem 2rem;
-    background: rgba(26, 26, 26, 0.7);
-    backdrop-filter: blur(18px) saturate(180%) contrast(1.1);
-    -webkit-backdrop-filter: blur(18px) saturate(180%) contrast(1.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.1);
+    transition: opacity 0.3s ease;
 }
 
-nav.scrolled {
-    background: rgba(26, 26, 26, 0.92);
-    box-shadow: 0 2px 20px rgba(0, 212, 255, 0.2),
-        0 4px 32px 0 rgba(31, 38, 135, 0.1);
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.nav-links {
+.dock-container {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(26, 26, 26, 0.75);
+    backdrop-filter: blur(20px) saturate(180%) contrast(1.1);
+    -webkit-backdrop-filter: blur(20px) saturate(180%) contrast(1.1);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 0 0.5px rgba(255, 255, 255, 0.1) inset,
+                0 20px 60px rgba(0, 212, 255, 0.1);
+    align-items: flex-end;
 }
 
-.nav-links a {
-    color: var(--text-light);
-    text-decoration: none;
-    transition: all 0.3s ease;
+.dock-item {
     position: relative;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.nav-links a:hover {
+.dock-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(131, 56, 236, 0.1));
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--primary-color);
+    font-size: 24px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
-.nav-links a::after {
-    content: "";
+.dock-item a::before {
+    content: '';
     position: absolute;
-    bottom: -5px;
+    top: 0;
     left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient);
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
     width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.mobile-menu {
+.dock-item a:hover::before {
+    opacity: 1;
+}
+
+.dock-item a i {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.dock-item:hover a i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px var(--primary-color));
+}
+
+/* Tooltip */
+.dock-item::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    margin-bottom: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dock-item::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    margin-bottom: 2px;
+}
+
+.dock-item:hover::before,
+.dock-item:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Active indicator */
+.dock-item a.active {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(131, 56, 236, 0.3));
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4),
+                0 0 0 2px rgba(0, 212, 255, 0.3);
+}
+
+/* Mobile Navigation Toggle */
+.mobile-nav-toggle {
     display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
     flex-direction: column;
     cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+    background: rgba(26, 26, 26, 0.75);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.mobile-menu span {
+.mobile-nav-toggle span {
     width: 25px;
     height: 3px;
     background: var(--text-light);
     margin: 3px 0;
     transition: 0.3s;
+    border-radius: 2px;
 }
 
-.mobile-menu.active span:nth-child(1) {
+.mobile-nav-toggle.active span:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
 }
 
-.mobile-menu.active span:nth-child(2) {
+.mobile-nav-toggle.active span:nth-child(2) {
     opacity: 0;
 }
 
-.mobile-menu.active span:nth-child(3) {
+.mobile-nav-toggle.active span:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
-}
-
-.nav-links.active {
-    display: flex;
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 70px);
-    background: rgba(26, 26, 26, 0.98);
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    z-index: 999;
-}
-
-.nav-links.active a {
-    font-size: 1.5rem;
-    color: var(--text-light);
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.nav-links.active a:hover {
-    color: var(--primary-color);
-    transform: scale(1.1);
 }
 
 .hero {
@@ -744,11 +784,28 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .nav-links {
+    #dock-nav {
         display: none;
     }
-    .mobile-menu {
+    .mobile-nav-toggle {
         display: flex;
+    }
+    #dock-nav.mobile-active {
+        display: block;
+        bottom: auto;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #dock-nav.mobile-active .dock-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+    #dock-nav.mobile-active .dock-item a {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
     }
     .hero-content h1 {
         font-size: 2.5rem;
