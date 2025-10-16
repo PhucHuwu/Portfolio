@@ -218,20 +218,12 @@ function handleDockVisibility() {
     if (footerVisible && scrollingDown) {
         // Hide dock when footer is visible and scrolling down
         dockNav.style.opacity = "0";
-        if (isMobile) {
-            dockNav.style.transform = "translateY(20px)";
-        } else {
-            dockNav.style.transform = "translateX(-50%) translateY(20px)";
-        }
+        dockNav.style.transform = "translateX(-50%) translateY(20px)";
         dockNav.style.pointerEvents = "none";
     } else {
         // Show dock when scrolling up or footer not visible
         dockNav.style.opacity = "1";
-        if (isMobile) {
-            dockNav.style.transform = "translateY(0)";
-        } else {
-            dockNav.style.transform = "translateX(-50%) translateY(0)";
-        }
+        dockNav.style.transform = "translateX(-50%) translateY(0)";
         dockNav.style.pointerEvents = "auto";
     }
     

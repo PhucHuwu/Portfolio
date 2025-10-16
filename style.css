@@ -204,17 +204,17 @@ body {
 .dock-container {
     display: flex;
     list-style: none;
-    gap: 8px;
-    padding: 12px 20px;
+    gap: 12px;
+    padding: 12px 12px;
     /* Liquid glass background with subtle gradient */
     background: linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.12) 0%,
-        rgba(255, 255, 255, 0.06) 50%,
-        rgba(255, 255, 255, 0.08) 100%
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.04) 50%,
+        rgba(255, 255, 255, 0.06) 100%
     );
-    backdrop-filter: blur(24px) saturate(200%) contrast(1.15) brightness(1.1);
-    -webkit-backdrop-filter: blur(24px) saturate(200%) contrast(1.15) brightness(1.1);
+    backdrop-filter: blur(10px) saturate(200%) contrast(1.15) brightness(1.1);
+    -webkit-backdrop-filter: blur(16px) saturate(200%) contrast(1.15) brightness(1.1);
     border-radius: 25px;
     
     /* Thin glossy transparent border - simulating glass edge refraction */
@@ -817,13 +817,6 @@ footer {
 
 /* Tablet Optimization */
 @media (max-width: 1024px) and (min-width: 769px) {
-    .dock-container {
-        gap: 6px;
-        padding: 10px 16px;
-        /* Slightly reduce blur for better performance on tablets */
-        backdrop-filter: blur(20px) saturate(180%) contrast(1.12) brightness(1.08);
-        -webkit-backdrop-filter: blur(20px) saturate(180%) contrast(1.12) brightness(1.08);
-    }
     .dock-item a {
         width: 45px;
         height: 45px;
@@ -837,28 +830,10 @@ footer {
 
 /* Mobile & Small Tablet */
 @media (max-width: 768px) {
-    #dock-nav {
-        bottom: 10px;
-        width: calc(100% - 20px);
-        left: 10px;
-        right: 10px;
-        transform: translateY(0);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
     .dock-container {
-        gap: 4px;
-        padding: 8px 12px;
         border-radius: 20px;
-        justify-content: space-around;
-        /* Optimize glass effect for mobile performance */
-        backdrop-filter: blur(16px) saturate(160%) contrast(1.1) brightness(1.05);
-        -webkit-backdrop-filter: blur(16px) saturate(160%) contrast(1.1) brightness(1.05);
     }
-    .dock-item {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-    }
+
     .dock-item a {
         width: 45px;
         height: 45px;
@@ -911,20 +886,8 @@ footer {
 
 /* Small Mobile Phones */
 @media (max-width: 480px) {
-    #dock-nav {
-        bottom: 8px;
-        width: calc(100% - 16px);
-        left: 8px;
-        right: 8px;
-        transform: translateY(0);
-    }
     .dock-container {
-        gap: 2px;
-        padding: 6px 8px;
         border-radius: 18px;
-        /* Further optimize for small screens */
-        backdrop-filter: blur(12px) saturate(140%) contrast(1.08) brightness(1.03);
-        -webkit-backdrop-filter: blur(12px) saturate(140%) contrast(1.08) brightness(1.03);
     }
     .dock-item a {
         width: 40px;
@@ -954,10 +917,6 @@ footer {
 
 /* Very Small Devices */
 @media (max-width: 360px) {
-    .dock-container {
-        gap: 1px;
-        padding: 5px 6px;
-    }
     .dock-item a {
         width: 36px;
         height: 36px;
