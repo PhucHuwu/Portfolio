@@ -56,7 +56,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
     opacity: 0.6;
 }
@@ -67,7 +67,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 0;
+    z-index: -2;
     pointer-events: none;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(18px) saturate(180%) contrast(1.1);
@@ -142,7 +142,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -3;
     background: radial-gradient(
             circle at 20% 50%,
             rgba(0, 212, 255, 0.15) 0%,
@@ -447,8 +447,8 @@ body {
         rgba(255, 255, 255, 0.04) 50%,
         rgba(255, 255, 255, 0.06) 100%
     );
-    backdrop-filter: blur(10px) saturate(100%) contrast(1.15) brightness(1.1);
-    -webkit-backdrop-filter: blur(16px) saturate(100%) contrast(1.15) brightness(1.1);
+    backdrop-filter: blur(3px) saturate(100%) contrast(1.15) brightness(1.1);
+    -webkit-backdrop-filter: blur(3px) saturate(100%) contrast(1.15) brightness(1.1);
     color: white;
     text-decoration: none;
     border-radius: 25px;
@@ -580,7 +580,7 @@ section {
     /* Thin glossy transparent border - simulating glass edge refraction */
     border: 1px solid rgba(255, 255, 255, 0.25);
     object-fit: cover;
-    animation: pulse 2s infinite, float 6s ease-in-out infinite;
+    animation: float 6s ease-in-out infinite;
     transition: all 0.5s ease;
     position: relative;
     filter: brightness(1);
@@ -611,17 +611,7 @@ section {
                 0 0 60px rgba(131, 56, 236, 0.4);
 }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(0, 212, 255, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(0, 212, 255, 0);
-    }
-}
+
 
 .about-text {
     font-size: 1.1rem;
@@ -664,8 +654,8 @@ section {
         
         /* Bottom edge depth */
         0 2px 4px rgba(0, 212, 255, 0.2);
-    backdrop-filter: blur(10px) saturate(100%) contrast(1.15) brightness(1.1);
-    -webkit-backdrop-filter: blur(16px) saturate(100%) contrast(1.15) brightness(1.1);
+    backdrop-filter: blur(3px) saturate(100%) contrast(1.15) brightness(1.1);
+    -webkit-backdrop-filter: blur(3px) saturate(100%) contrast(1.15) brightness(1.1);
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform-style: preserve-3d;
     perspective: 1000px;
@@ -808,8 +798,8 @@ section {
         rgba(255, 255, 255, 0.04) 50%,
         rgba(255, 255, 255, 0.06) 100%
     );
-    backdrop-filter: blur(10px) saturate(100%) contrast(1.15) brightness(1.1);
-    -webkit-backdrop-filter: blur(16px) saturate(100%) contrast(1.15) brightness(1.1);
+    backdrop-filter: blur(3px) saturate(100%) contrast(1.15) brightness(1.1);
+    -webkit-backdrop-filter: blur(3px) saturate(100%) contrast(1.15) brightness(1.1);
     border-radius: 25px;
     /* Thin glossy transparent border - simulating glass edge refraction */
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -878,8 +868,8 @@ section {
         rgba(255, 255, 255, 0.04) 50%,
         rgba(255, 255, 255, 0.06) 100%
     );
-    backdrop-filter: blur(10px) saturate(100%) contrast(1.15) brightness(1.1);
-    -webkit-backdrop-filter: blur(16px) saturate(100%) contrast(1.15) brightness(1.1);
+    backdrop-filter: blur(3px) saturate(100%) contrast(1.15) brightness(1.1);
+    -webkit-backdrop-filter: blur(3px) saturate(100%) contrast(1.15) brightness(1.1);
     /* Thin glossy transparent border - simulating glass edge refraction */
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 25px;
@@ -922,8 +912,8 @@ section {
         rgba(255, 255, 255, 0.04) 50%,
         rgba(255, 255, 255, 0.06) 100%
     );
-    backdrop-filter: blur(10px) saturate(100%) contrast(1.15) brightness(1.1);
-    -webkit-backdrop-filter: blur(16px) saturate(100%) contrast(1.15) brightness(1.1);
+    backdrop-filter: blur(3px) saturate(100%) contrast(1.15) brightness(1.1);
+    -webkit-backdrop-filter: blur(3px) saturate(100%) contrast(1.15) brightness(1.1);
     color: white;
     /* Thin glossy transparent border - simulating glass edge refraction */
     border: 1px solid rgba(255, 255, 255, 0.25);
