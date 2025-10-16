@@ -206,20 +206,94 @@ body {
     list-style: none;
     gap: 8px;
     padding: 12px 20px;
-    background: rgba(26, 26, 26, 0.75);
-    backdrop-filter: blur(20px) saturate(180%) contrast(1.1);
-    -webkit-backdrop-filter: blur(20px) saturate(180%) contrast(1.1);
+    /* Liquid glass background with subtle gradient */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.06) 50%,
+        rgba(255, 255, 255, 0.08) 100%
+    );
+    backdrop-filter: blur(24px) saturate(200%) contrast(1.15) brightness(1.1);
+    -webkit-backdrop-filter: blur(24px) saturate(200%) contrast(1.15) brightness(1.1);
     border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-                0 0 0 0.5px rgba(255, 255, 255, 0.1) inset,
-                0 20px 60px rgba(0, 212, 255, 0.1);
+    
+    /* Thin glossy transparent border - simulating glass edge refraction */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    
+    /* Multi-layered shadows for 3D depth and thickness feeling */
+    box-shadow: 
+        /* Outer glow for glass illumination */
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 20px 60px rgba(0, 212, 255, 0.15),
+        
+        /* Thin bright outer edge - top/left highlight */
+        0 -1px 1px 0 rgba(255, 255, 255, 0.4),
+        -1px 0 1px 0 rgba(255, 255, 255, 0.3),
+        
+        /* Inner shadows for glass thickness */
+        inset 0 1px 2px rgba(255, 255, 255, 0.35),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.15),
+        inset -1px 0 2px rgba(255, 255, 255, 0.15),
+        inset 1px 0 2px rgba(0, 0, 0, 0.1),
+        
+        /* Bottom edge depth */
+        0 2px 4px rgba(0, 212, 255, 0.2);
+    
     align-items: flex-end;
+    position: relative;
+    
+    /* Allow items to pop out on hover */
+    overflow: visible;
+}
+
+/* Glossy reflection overlay for liquid glass effect */
+.dock-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 100%
+    );
+    border-radius: 25px 25px 0 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Bottom edge shimmer for glass thickness */
+.dock-container::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 212, 255, 0.5) 20%,
+        rgba(131, 56, 236, 0.5) 50%,
+        rgba(0, 212, 255, 0.5) 80%,
+        transparent 100%
+    );
+    filter: blur(1px);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .dock-item {
     position: relative;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+}
+
+.dock-item:hover {
+    z-index: 10;
 }
 
 .dock-item a {
@@ -228,31 +302,57 @@ body {
     justify-content: center;
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(131, 56, 236, 0.1));
+    
+    /* Liquid glass background for items */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(0, 212, 255, 0.12) 50%,
+        rgba(131, 56, 236, 0.12) 100%
+    );
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    
     border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Glossy thin border for each item */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
     color: var(--primary-color);
     font-size: 24px;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    
+    /* Enhanced 3D glass shadow */
+    box-shadow: 
+        0 4px 15px rgba(0, 212, 255, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+    
     position: relative;
     overflow: hidden;
 }
 
+/* Glass reflection highlight */
 .dock-item a::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), transparent);
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.1) 30%,
+        transparent 60%
+    );
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.4s ease;
+    transform: scale(0.5) rotate(0deg);
 }
 
 .dock-item a:hover::before {
     opacity: 1;
+    transform: scale(1) rotate(180deg);
 }
 
 .dock-item a i {
@@ -266,55 +366,22 @@ body {
     filter: drop-shadow(0 0 10px var(--primary-color));
 }
 
-/* Tooltip */
-.dock-item::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-10px);
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 12px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
-    margin-bottom: 8px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
 
-.dock-item::after {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid rgba(0, 0, 0, 0.9);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
-    margin-bottom: 2px;
-}
 
-.dock-item:hover::before,
-.dock-item:hover::after {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-/* Active indicator */
+/* Active indicator with enhanced liquid glass effect */
 .dock-item a.active {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(131, 56, 236, 0.3));
-    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4),
-                0 0 0 2px rgba(0, 212, 255, 0.3);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(0, 212, 255, 0.3) 50%,
+        rgba(131, 56, 236, 0.3) 100%
+    );
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 
+        0 4px 20px rgba(0, 212, 255, 0.5),
+        0 0 0 2px rgba(0, 212, 255, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -753,6 +820,9 @@ footer {
     .dock-container {
         gap: 6px;
         padding: 10px 16px;
+        /* Slightly reduce blur for better performance on tablets */
+        backdrop-filter: blur(20px) saturate(180%) contrast(1.12) brightness(1.08);
+        -webkit-backdrop-filter: blur(20px) saturate(180%) contrast(1.12) brightness(1.08);
     }
     .dock-item a {
         width: 45px;
@@ -780,6 +850,9 @@ footer {
         padding: 8px 12px;
         border-radius: 20px;
         justify-content: space-around;
+        /* Optimize glass effect for mobile performance */
+        backdrop-filter: blur(16px) saturate(160%) contrast(1.1) brightness(1.05);
+        -webkit-backdrop-filter: blur(16px) saturate(160%) contrast(1.1) brightness(1.05);
     }
     .dock-item {
         flex: 1;
@@ -849,6 +922,9 @@ footer {
         gap: 2px;
         padding: 6px 8px;
         border-radius: 18px;
+        /* Further optimize for small screens */
+        backdrop-filter: blur(12px) saturate(140%) contrast(1.08) brightness(1.03);
+        -webkit-backdrop-filter: blur(12px) saturate(140%) contrast(1.08) brightness(1.03);
     }
     .dock-item a {
         width: 40px;
