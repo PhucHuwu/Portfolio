@@ -1,3 +1,124 @@
+// Cursor Glow Effect
+const cursorGlow = document.querySelector(".cursor-glow");
+let mouseX = 0,
+    mouseY = 0;
+let cursorX = 0,
+    cursorY = 0;
+
+document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorGlow.classList.add("active");
+});
+
+document.addEventListener("mouseleave", () => {
+    cursorGlow.classList.remove("active");
+});
+
+function animateCursor() {
+    const speed = 0.15;
+    cursorX += (mouseX - cursorX) * speed;
+    cursorY += (mouseY - cursorY) * speed;
+
+    cursorGlow.style.left = cursorX + "px";
+    cursorGlow.style.top = cursorY + "px";
+
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Floating Particles Animation
+const canvas = document.getElementById("particles-canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particlesArray = [];
+const numberOfParticles = 100;
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * 0.5 - 0.25;
+        this.opacity = Math.random() * 0.5 + 0.2;
+        this.color = this.randomColor();
+    }
+
+    randomColor() {
+        const colors = [
+            "rgba(0, 212, 255, ",
+            "rgba(255, 0, 110, ",
+            "rgba(131, 56, 236, ",
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    }
+
+    draw() {
+        ctx.fillStyle = this.color + this.opacity + ")";
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+function initParticles() {
+    particlesArray.length = 0;
+    for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+    }
+}
+
+function connectParticles() {
+    for (let i = 0; i < particlesArray.length; i++) {
+        for (let j = i + 1; j < particlesArray.length; j++) {
+            const dx = particlesArray[i].x - particlesArray[j].x;
+            const dy = particlesArray[i].y - particlesArray[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 120) {
+                const opacity = (1 - distance / 120) * 0.3;
+                ctx.strokeStyle = `rgba(0, 212, 255, ${opacity})`;
+                ctx.lineWidth = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particlesArray.forEach((particle) => {
+        particle.update();
+        particle.draw();
+    });
+    connectParticles();
+    requestAnimationFrame(animateParticles);
+}
+
+initParticles();
+animateParticles();
+
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initParticles();
+});
+
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
         e.preventDefault();
