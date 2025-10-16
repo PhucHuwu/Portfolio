@@ -164,16 +164,7 @@ function resetDock() {
     });
 }
 
-// Mobile Menu Toggle
-const mobileToggle = document.querySelector(".mobile-nav-toggle");
-const dockNav = document.querySelector("#dock-nav");
 
-if (mobileToggle && dockNav) {
-    mobileToggle.addEventListener("click", () => {
-        mobileToggle.classList.toggle("active");
-        dockNav.classList.toggle("mobile-active");
-    });
-}
 
 // Active navigation item based on scroll
 const sections = document.querySelectorAll("section[id]");
@@ -215,10 +206,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
                 behavior: "smooth",
                 block: "start",
             });
-            if (dockNav.classList.contains("mobile-active")) {
-                dockNav.classList.remove("mobile-active");
-                mobileToggle.classList.remove("active");
-            }
         }
     });
 });
