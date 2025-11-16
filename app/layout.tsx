@@ -37,6 +37,7 @@ export default function RootLayout({
                 <GlClient />
                 <Header />
                 <div className="relative z-10">{children}</div>
+                <Analytics />
             </body>
         </html>
     );
