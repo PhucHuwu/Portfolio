@@ -17,7 +17,7 @@ export function Contact() {
                         <p className="mt-6 text-foreground/60 font-mono text-sm sm:text-base space-y-6">AI Engineering &amp; Python Software Development</p>
 
                         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <ContactCard icon={<Mail className="size-4" />} label="Email" value="hello@phuchuwu.dev" href="mailto:hello@phuchuwu.dev" />
+                            <ContactCard icon={<Mail className="size-4" />} label="Email" value="phuctranhuu37@gmail.com" href="mailto:phuctranhuu37@gmail.com" />
                             <ContactCard
                                 icon={<Facebook className="size-4" />}
                                 label="Facebook"
