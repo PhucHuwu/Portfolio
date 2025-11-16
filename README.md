@@ -1,100 +1,112 @@
-# Phuc Huwu - Computer Vision Engineer & AI Developer
-
-<div align="center">
-  <img src="PhucHuwu.jpg" alt="Phuc Huwu" width="200" style="border-radius: 15px"/>
-  
-  [![GitHub](https://img.shields.io/badge/GitHub-PhucHuwu-blue?style=flat&logo=github)](https://github.com/PhucHuwu)
-  [![Email](https://img.shields.io/badge/Email-phuctranhuu37%40gmail.com-red?style=flat&logo=gmail)](mailto:phuctranhuu37@gmail.com)
-  [![Facebook](https://img.shields.io/badge/Facebook-Tran_Huwu_Phuc-blue?style=flat&logo=facebook)](https://facebook.com/Phuchuwu)
-</div>
+<h3 align="center">Hi! My name's</h3>
+<h1 align="center">Phuc Huwu</h1>
 
 ## 👨‍💻 About Me
 
-Computer Vision enthusiast and AI developer from Vietnam, currently pursuing Information Technology at Posts and Telecommunications Institute of Technology (PTIT). Passionate about developing AI solutions that bridge the gap between theoretical concepts and real-world applications.  
-View my portfolio: https://phuchuwu.vercel.app/
+I’m a passionate AI researcher from Vietnam, currently pursuing an **Engineering Degree in Information Technology** at the **Posts and Telecommunications Institute of Technology (PTIT)**. My primary research lies at the intersection of **Computer Vision**, **Large Language Models (LLMs)**, and **Retrieval-Augmented Generation (RAG)** systems.
 
-### 🎯 Career Focus
-
--   Computer Vision Development
--   Deep Learning Implementation
--   AI Model Deployment
--   Research in AI Technologies
-
-## 🛠️ Technical Skills
-
-### Programming Languages
-
--   Python (Advanced)
--   C/C++ (Basic)
-
-### AI & Computer Vision
-
--   OpenCV
--   MediaPipe
--   TensorFlow
--   PyTorch
--   RAG (Retrieval-Augmented Generation)
-
-### Tools & Technologies
-
--   Git & GitHub
--   Visual Studio Code
--   Jupyter Notebook
-
-## 🚀 Featured Projects
-
-### 1. TuyenSinhGPT
-
-An AI-powered system providing comprehensive information about university admissions in Vietnam.
-
--   **Tech Stack**: Python, RAG, SentenceTransformer, NumPy, FAISS
--   **[View Project](https://github.com/PhucHuwu/TuyenSinhGPT)**
-
-### 2. Distance Estimation
-
-Advanced hand-to-camera distance estimation using quadratic nonlinear regression.
-
--   **Tech Stack**: Python, OpenCV, MediaPipe, Matplotlib, NumPy
--   **[View Project](https://github.com/PhucHuwu/Distance_estimation)**
-
-### 3. Vision Pointer
-
-Innovative eye-tracking system for hands-free computer interaction.
-
--   **Tech Stack**: Python, OpenCV, MediaPipe
--   **[View Project](https://github.com/PhucHuwu/Vision_Pointer)**
-
-## 🎓 Education
-
-**Posts and Telecommunications Institute of Technology (PTIT)**
-
--   Bachelor of Information Technology
--   Focus on AI and Computer Vision
--   Expected Graduation: 2026
-
-## 💼 Professional Interests
-
--   Computer Vision Applications
--   AI Research & Development
--   Deep Learning Innovation
--   Open Source Contribution
--   Technical Writing
-
-## 📫 Contact Information
-
--   📧 Email: phuctranhuu37@gmail.com
--   📱 Phone: (+84) 368 334 223
--   📍 Location: Hoang Liet, Hoang Mai, Ha Noi, Vietnam
--   💼 GitHub: [PhucHuwu](https://github.com/PhucHuwu)
--   👥 Facebook: [Tran Huwu Phuc](https://facebook.com/Phuchuwu)
-
-## 🗣️ Languages
-
--   Vietnamese (Native)
--   English (Professional Working Proficiency)
+Driven by curiosity and innovation, I aim to solve real-world problems by combining deep theoretical knowledge with hands-on experience in building intelligent systems. Beyond my core interests, I also explore **web automation** using tools like **Selenium** and **Playwright** for robust, real-time data interaction.
 
 ---
 
+## 🛠 Technical Skills
+
+### **Programming Languages**
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-0B2343?style=for-the-badge&logo=javascript&logoColor=#7DF1E)
+![C++](https://img.shields.io/badge/C++-B2FCE4?style=for-the-badge&logo=c%2B%2B&logoColor=00599C)
+![C](https://img.shields.io/badge/C-B2FCE4?style=for-the-badge&logo=c&logoColor=A8B9CC)
+
+### **Machine / Deep Learning**
+
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![Transformers](https://img.shields.io/badge/Transformers-FF6F00?style=for-the-badge&logo=huggingface&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
+
+### **Advanced AI Techniques**
+
+![LLMs](https://img.shields.io/badge/LLMs-412991?style=for-the-badge&logo=openai&logoColor=white)
+![RAG](https://img.shields.io/badge/RAG-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Model Fine-tuning](https://img.shields.io/badge/Model%20Fine--tuning-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Prompt Engineering](https://img.shields.io/badge/Prompt%20Engineering-412991?style=for-the-badge&logo=openai&logoColor=white)
+
+### **Data Science & Visualization**
+
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white)
+
+### **Computer Vision & Image Processing**
+
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+![MediaPipe](https://img.shields.io/badge/MediaPipe-4285F4?style=for-the-badge&logo=google&logoColor=white)
+
+### **Databases & Storage**
+
+![Vector Databases](https://img.shields.io/badge/Vector%20Databases-4479A1?style=for-the-badge&logo=postgresql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+
+### **Development Tools & Platforms**
+
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![Anaconda](https://img.shields.io/badge/Anaconda-44A833?style=for-the-badge&logo=anaconda&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-3BABC3?style=for-the-badge&logo=flask&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/Hugging%20Face-013243?style=for-the-badge&logo=huggingface&logoColor=FFD21E)
+
+### **Web Automation & Testing**
+
+![Selenium](https://img.shields.io/badge/Selenium-B2FCE4?style=for-the-badge&logo=selenium&logoColor=43B02A)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
+
+---
+
+## 🎓 Academic Background
+
+**📚 Posts and Telecommunications Institute of Technology, Hanoi**  
+_Engineer of Information Technology_ | 2022 – Present
+
+-   **Direct Admission** with full scholarship (Top-tier entrant)
+-   **Focus**: Information System
+
+**🏫 Thai Hoa High School**  
+_High School Diploma_ | 2019 – 2022
+
+-   🏆 **Third Prize**, International Science and Engineering Fair (ISEF Vietnam) – Embedded Systems, AI category
+
+---
+
+## 📈 GitHub Statistics
+
 <div align="center">
-  <i>Let's connect and build something amazing together!</i>
+  <img src="https://komarev.com/ghpvc/?username=PhucHuwu&color=blue&style=flat-square" height="220" alt="Profile Views"  />
+  <a href="https://wakatime.com/@17186718-7dd5-4bca-b1e4-f5a55aad2fb7"><img src="https://wakatime.com/badge/user/17186718-7dd5-4bca-b1e4-f5a55aad2fb7.svg" alt="Total time coded since Nov 11 2025" /></a>
 </div>
+
+<div align="center">
+  <img src="https://streak-stats.demolab.com?user=PhucHuwu&theme=github-dark-blue&border_radius=4&date_format=j%2Fn%5B%2FY%5D&mode=weekly&hide_border=false" height="200" alt="GitHub Stats" />
+</div>
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=PhucHuwu&theme=github_dark&show_icons=true&hide_border=false&count_private=true" height="200" alt="stats graph" />
+</div>
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/wakatime?username=PhucHuwu&hide_title=false&layout=compact&langs_count=10&theme=github_dark&hide_border=false" height="200" alt="wakatime graph" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=PhucHuwu&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=10&theme=github_dark&hide_border=false" height="200" alt="languages graph" />
+</div>
+
+---
+
+## 📫 Contact Me
+
+-   **📧 Email**: [phuctranhuu37@gmail.com](mailto:phuctranhuu37@gmail.com)
+-   **📞 Phone**: (+84) 368 334 223
+-   **🌐 LinkedIn**: [in/phuchuwu](https://www.linkedin.com/in/phuchuwu)
+-   **📍 Location**: Hoang Liet, Hoang Mai, Hanoi, Vietnam
+
+---
+
+> _“Advancing AI through research, engineering, and real-world deployment — one model at a time.”_
