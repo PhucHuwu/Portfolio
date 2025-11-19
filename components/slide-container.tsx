@@ -20,6 +20,9 @@ export function SlideContainer({ children }: Props) {
         const getSlides = () => Array.from(el.querySelectorAll<HTMLElement>(".slide"));
 
         const onWheel = (e: WheelEvent) => {
+            // Disable on mobile/tablet (vertical layout)
+            if (window.innerWidth < 1024) return;
+
             // If shift key is pressed or it's more of a horizontal wheel, allow default
             if (e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
             e.preventDefault();

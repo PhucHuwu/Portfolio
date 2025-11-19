@@ -10,9 +10,9 @@ export function Hero() {
     };
 
     return (
-        <div className="flex flex-col h-svh justify-between">
+        <div className="flex flex-col min-h-svh justify-between py-6">
             <div className="pb-16 mt-auto text-center relative">
-                <h1 className="text-5xl sm:text-6xl md:text-7xl font-sentient">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl font-sentient">
                     Phuc Huwu
                     <br />
                 </h1>

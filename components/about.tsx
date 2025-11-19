@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function About() {
     return (
-        <section className="flex min-h-screen flex-col md:flex-row items-center justify-center gap-8 px-6">
+        <section className="flex min-h-screen flex-col md:flex-row items-center justify-center gap-8 px-4 sm:px-6">
             {/* Left: personal photo */}
             <div className="flex-shrink-0 mt-8 md:mt-0 flex items-center justify-center">
                 <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden shadow-lg">

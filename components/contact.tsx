@@ -8,23 +8,29 @@ import { Mail, Phone, MapPin, Github, Facebook } from "lucide-react";
 
 export function Contact() {
     return (
-        <section className="flex min-h-screen items-center justify-center px-6 py-12">
-            <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section className="flex min-h-screen items-center justify-center px-4 py-12 md:py-24">
+            <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                 {/* Left column: photo, name, info cards */}
                 <div className="flex flex-col items-center md:items-start gap-6">
                     <div className="w-full bg-white/40 dark:bg-neutral-800/50 p-6 sm:p-8 rounded-2xl shadow-lg backdrop-blur-sm border border-gray-200/10 dark:border-neutral-800/30">
                         <h1 className="text-2xl sm:text-3xl md:text-4xl font-sentient">Phuc Huwu</h1>
-                        <p className="mt-6 text-foreground/60 font-mono text-sm sm:text-base space-y-6">AI Engineering &amp; Python Software Development</p>
+                        <p className="mt-6 text-foreground/60 font-mono text-sm sm:text-base space-y-6">AI Engineering & Python Software Development</p>
 
-                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <ContactCard icon={<Mail className="size-4" />} label="Email" value="phuctranhuu37@gmail.com" href="mailto:phuctranhuu37@gmail.com" />
+                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 gap-3">
+                            <ContactCard
+                                icon={<Mail className="size-4" />}
+                                label="Email"
+                                value="phuctranhuu37@gmail.com"
+                                href="mailto:phuctranhuu37@gmail.com"
+                                className="sm:col-span-2 md:col-span-1 xl:col-span-2"
+                            />
                             <ContactCard
                                 icon={<Facebook className="size-4" />}
                                 label="Facebook"
                                 value="facebook.com/PhucHuwu"
                                 href="https://facebook.com/PhucHuwu"
                                 external
-                                className="sm:col-span-2"
+                                className="sm:col-span-2 md:col-span-1 xl:col-span-2"
                             />
                             <ContactCard icon={<Phone className="size-4" />} label="Phone" value="(+84) 368 334 223" href="tel:+84368334223" />
                             <ContactCard
@@ -34,7 +40,12 @@ export function Contact() {
                                 href="https://github.com/PhucHuwu"
                                 external
                             />
-                            <ContactCard icon={<MapPin className="size-4" />} label="Location" value="Hanoi, Vietnam" />
+                            <ContactCard
+                                icon={<MapPin className="size-4" />}
+                                label="Location"
+                                value="Hanoi, Vietnam"
+                                className="sm:col-span-2 md:col-span-1 xl:col-span-2"
+                            />
                         </div>
                     </div>
                 </div>
@@ -99,7 +110,7 @@ function ContactCard({
             }`}
         >
             <div className="flex-shrink-0 w-10 h-10 rounded-md bg-background/60 dark:bg-neutral-900/30 flex items-center justify-center text-lg">{icon}</div>
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
                 <div className="text-xs font-mono text-foreground/60">{label}</div>
                 <div className="text-sm font-medium truncate">{value}</div>
             </div>
