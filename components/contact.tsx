@@ -150,7 +150,7 @@ function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const message = (data.get("message") || "").toString();
 
     // fallback: open mail client with prefilled message
-    const to = "hello@phuchuwu.dev";
+    const to = "phuctranhuu37@gmail.com";
     const subject = encodeURIComponent(`Contact from ${name || email}`);
     const body = encodeURIComponent(`${message}\n\n— ${name} • ${email}`);
     if (typeof window !== "undefined") {
