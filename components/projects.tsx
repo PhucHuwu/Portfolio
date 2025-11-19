@@ -8,7 +8,7 @@ export function Projects() {
         window.dispatchEvent(new CustomEvent("gl-hover", { detail: value }));
     };
     return (
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start justify-center gap-6 px-4 md:px-8 lg:px-12 py-8">
+        <section id="projects" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start justify-center gap-6 px-4 md:px-8 lg:px-12 py-8">
             <div className="text-center md:text-left w-full px-1 sm:px-2 h-full">
                 <div className="h-full flex flex-col bg-white/40 dark:bg-neutral-800/50 p-4 sm:p-6 rounded-2xl shadow-lg backdrop-blur-sm border border-gray-200/10 dark:border-neutral-800/30">
                     <div className="flex-grow">

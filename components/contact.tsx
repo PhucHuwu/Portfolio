@@ -8,7 +8,7 @@ import { Mail, Phone, MapPin, Github, Facebook } from "lucide-react";
 
 export function Contact() {
     return (
-        <section className="flex min-h-screen items-center justify-center px-4 py-12 md:py-24">
+        <section id="contact" className="flex min-h-screen items-center justify-center px-4 py-12 md:py-24">
             <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                 {/* Left column: photo, name, info cards */}
                 <div className="flex flex-col items-center md:items-start gap-6">
@@ -16,7 +16,7 @@ export function Contact() {
                         <h1 className="text-2xl sm:text-3xl md:text-4xl font-sentient">Phuc Huwu</h1>
                         <p className="mt-6 text-foreground/60 font-mono text-sm sm:text-base space-y-6">AI Engineering & Python Software Development</p>
 
-                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 gap-3">
+                        <div id="contact-info" className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 gap-3">
                             <ContactCard
                                 icon={<Mail className="size-4" />}
                                 label="Email"
@@ -58,7 +58,7 @@ export function Contact() {
                             Have a project or question? Drop a message and I’ll get back to you.
                         </p>
 
-                        <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+                        <form id="contact-form" className="mt-6 space-y-4" onSubmit={handleSubmit}>
                             <div>
                                 <label className="block text-xs font-mono text-foreground/60 mb-1">Your name</label>
                                 <Input name="name" placeholder="Your full name" />

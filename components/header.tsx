@@ -46,11 +46,18 @@ export const Header = () => {
 
     return (
         <div className="fixed z-50 pt-8 md:pt-14 top-0 left-0 w-full">
-            <header className="flex items-center justify-between container">
-                <Link href="/" className="uppercase font-mono">
+            <header id="main-header" className="flex items-center justify-between container">
+                <Link
+                    href="/"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                    className="uppercase font-mono backdrop-blur-sm bg-white/30 dark:bg-neutral-900/30 px-3 py-1.5 rounded-lg border border-white/10"
+                >
                     Portfolio
                 </Link>
-                <nav className="flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center justify-center gap-x-10">
+                <nav id="desktop-nav" className="flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center justify-center gap-x-10">
                     {[
                         { label: "Home", id: "home" },
                         { label: "About", id: "about" },

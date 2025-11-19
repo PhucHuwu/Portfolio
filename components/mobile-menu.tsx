@@ -20,48 +20,49 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
         { name: "Contact", href: "#contact" },
     ];
 
-    const handleLinkClick = () => {
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+        e.preventDefault();
         setIsOpen(false);
+        const targetId = href.replace("#", "");
+        const element = document.getElementById(targetId);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
     };
 
     return (
         <Dialog.Root modal={false} open={isOpen} onOpenChange={setIsOpen}>
-            <Dialog.Trigger asChild>
-                <button className={cn("group lg:hidden p-2 text-foreground transition-colors", className)} aria-label="Open menu">
-                    <Menu className="group-[[data-state=open]]:hidden" size={24} />
-                    <X className="hidden group-[[data-state=open]]:block" size={24} />
-                </button>
-            </Dialog.Trigger>
-
-            <Dialog.Portal>
-                <div data-overlay="true" className="fixed z-30 inset-0 bg-black/50 backdrop-blur-sm" />
+            <div className="relative z-50">
+                <Dialog.Trigger asChild>
+                    <button id="mobile-menu-trigger" className={cn("group lg:hidden p-2 text-foreground transition-colors", className)} aria-label="Open menu">
+                        <Menu className="group-[[data-state=open]]:hidden" size={24} />
+                        <X className="hidden group-[[data-state=open]]:block" size={24} />
+                    </button>
+                </Dialog.Trigger>
 
                 <Dialog.Content
+                    id="mobile-menu-content"
+                    className="absolute top-full right-0 mt-2 w-max min-w-[150px] p-4 rounded-2xl bg-white/40 dark:bg-neutral-800/50 backdrop-blur-md border border-gray-200/10 dark:border-neutral-800/30 shadow-lg origin-top-right data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
                     onInteractOutside={(e) => {
-                        if (e.target instanceof HTMLElement && e.target.dataset.overlay !== "true") {
-                            e.preventDefault();
-                        }
+                        setIsOpen(false);
                     }}
-                    className="fixed top-0 left-0 w-full z-40 py-28 md:py-40"
                 >
                     <Dialog.Title className="sr-only">Menu</Dialog.Title>
 
-                    <nav className="flex flex-col space-y-6 container mx-auto">
+                    <nav className="flex flex-col space-y-2">
                         {menuItems.map((item) => (
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                onClick={handleLinkClick}
-                                className="text-xl font-mono uppercase text-foreground/60 transition-colors ease-out duration-150 hover:text-foreground/100 py-4 block"
+                                onClick={(e) => handleScroll(e, item.href)}
+                                className="text-base font-mono uppercase text-foreground/80 transition-colors ease-out duration-150 hover:text-foreground/100 hover:bg-foreground/5 dark:hover:bg-neutral-800/40 px-4 py-3 rounded-lg block"
                             >
                                 {item.name}
                             </Link>
                         ))}
-
-                        {/* Sign In link removed */}
                     </nav>
                 </Dialog.Content>
-            </Dialog.Portal>
+            </div>
         </Dialog.Root>
     );
 };
