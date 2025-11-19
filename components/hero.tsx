@@ -1,12 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import React from "react";
 import { Pill } from "./pill";
 import { Button } from "./ui/button";
 
 export function Hero() {
     const emitHover = (v: boolean) => {
         window.dispatchEvent(new CustomEvent("gl-hover", { detail: v }));
+    };
+
+    const handleContactClick = (e: React.MouseEvent) => {
+        if (typeof window === "undefined") return;
+        const el = document.getElementById("contact");
+        if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: "smooth" });
+            try {
+                window.history.pushState(null, "", "#contact");
+            } catch {}
+        }
+        // otherwise let the Link navigate to /#contact
     };
 
     return (
@@ -24,12 +38,12 @@ export function Hero() {
                 </div>
 
                 <div className="mt-14">
-                    <Link className="contents max-sm:hidden" href="/#contact">
+                    <Link className="contents max-sm:hidden" href="/#contact" onClick={handleContactClick}>
                         <Button id="hero-contact-btn-desktop" onMouseEnter={() => emitHover(true)} onMouseLeave={() => emitHover(false)}>
                             [Contact]
                         </Button>
                     </Link>
-                    <Link className="contents sm:hidden" href="/#contact">
+                    <Link className="contents sm:hidden" href="/#contact" onClick={handleContactClick}>
                         <Button id="hero-contact-btn-mobile" size="sm" onMouseEnter={() => emitHover(true)} onMouseLeave={() => emitHover(false)}>
                             [Contact]
                         </Button>

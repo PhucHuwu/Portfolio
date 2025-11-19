@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface MobileMenuProps {
@@ -20,6 +21,8 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
         { name: "Contact", href: "#contact" },
     ];
 
+    const router = useRouter();
+
     const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
         e.preventDefault();
         setIsOpen(false);
@@ -27,7 +30,17 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
         const element = document.getElementById(targetId);
         if (element) {
             element.scrollIntoView({ behavior: "smooth" });
+            try {
+                window.history.pushState(null, "", href);
+            } catch {}
+            return;
         }
+
+        // If target not present, navigate to home and set flag to scroll after load
+        try {
+            sessionStorage.setItem("scroll-to", targetId);
+        } catch {}
+        router.push("/");
     };
 
     return (

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { MobileMenu } from "./mobile-menu";
 import React, { useEffect, useState } from "react";
 
@@ -10,12 +11,24 @@ export const Header = () => {
         window.dispatchEvent(new CustomEvent("gl-hover", { detail: value }));
     };
     const [activeId, setActiveId] = useState<string | null>(null);
+    const router = useRouter();
+
     const scrollTo = (id: string, e?: React.MouseEvent) => {
         e?.preventDefault();
         const el = document.getElementById(id);
         if (el) {
             el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+            try {
+                window.history.pushState(null, "", `#${id}`);
+            } catch {}
+            return;
         }
+
+        // If target not present (we're on another route), navigate to home
+        try {
+            sessionStorage.setItem("scroll-to", id);
+        } catch {}
+        router.push("/");
     };
 
     useEffect(() => {
@@ -48,11 +61,8 @@ export const Header = () => {
         <div className="fixed z-50 pt-8 md:pt-14 top-0 left-0 w-full">
             <header id="main-header" className="flex items-center justify-between container">
                 <Link
-                    href="/"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
+                    href="#home"
+                    onClick={(e) => scrollTo("home", e)}
                     className="uppercase font-mono backdrop-blur-sm bg-white/30 dark:bg-neutral-900/30 px-3 py-1.5 rounded-lg border border-white/10"
                 >
                     Portfolio
