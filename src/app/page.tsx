@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { MossHoverReveal } from "./components/MossHoverReveal";
+import { MossHoverReveal } from "@/components/MossHoverReveal";
 
 const navItems = [
   { label: "Home", id: "home" },

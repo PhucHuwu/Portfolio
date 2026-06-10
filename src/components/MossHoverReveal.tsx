@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import dryImg from "../../assets/dry.png";
-import frossImg from "../../assets/fross.png";
 
 type TrailPoint = {
   id: number;
@@ -142,7 +140,7 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
       onMouseLeave={() => setActive(false)}
       className="relative min-h-screen w-full overflow-hidden cursor-none select-none"
       style={{
-        backgroundImage: `url(${dryImg.src})`,
+        backgroundImage: "url(/dry.png)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -181,7 +179,7 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
           </mask>
         </defs>
         <image
-          href={frossImg.src}
+          href="/fross.png"
           width="100%"
           height="100%"
           preserveAspectRatio="xMidYMid slice"

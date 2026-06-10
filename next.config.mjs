@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  outputFileTracingExcludes: {
+    "/*": ["./Portfolio/**/*"],
+  },
+};
 
 export default nextConfig;
