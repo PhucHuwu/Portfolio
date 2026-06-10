@@ -132,10 +132,10 @@ export default function Home() {
           <div className="hero-card text-center">
             <p className="eyebrow">Portfolio</p>
             <h1 className="font-sentient text-5xl sm:text-6xl md:text-7xl">Phuc Huwu</h1>
-            <div className="glass-panel mx-auto mt-6 inline-block px-4 py-2">
+            <div className="glass-panel mx-auto mt-6 block px-4 py-2">
               <p className="font-mono text-sm text-foreground/80 sm:text-base">AI Engineering & Python Software Development</p>
             </div>
-            <button className="portfolio-button mt-20 mb-4" onClick={() => scrollTo("contact")}>
+            <button className="portfolio-button mt-8" onClick={() => scrollTo("contact")}>
               [Contact]
             </button>
           </div>
