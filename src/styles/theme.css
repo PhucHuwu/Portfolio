@@ -211,7 +211,7 @@
   width: 100%;
   min-height: 100svh;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: visible;
   background: transparent;
 }
 
@@ -388,6 +388,9 @@
 @media (min-width: 1024px) {
   .projects-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-height: calc(100svh - 8rem);
+    overflow-y: auto;
+    padding-right: 0.25rem;
   }
 }
 
@@ -457,7 +460,6 @@
   pointer-events: none;
   opacity: 0;
   will-change: transform, opacity;
-  transition: opacity 160ms ease;
 }
 
 .forest-cursor-active {
@@ -486,7 +488,6 @@
     0 0 20px rgba(154, 178, 117, 0.22),
     0 0 46px rgba(214, 229, 198, 0.12);
   opacity: 0.78;
-  transition: opacity 220ms ease, box-shadow 220ms ease, background 220ms ease, transform 220ms ease;
 }
 
 .forest-cursor-dot {

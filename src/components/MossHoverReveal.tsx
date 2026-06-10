@@ -40,8 +40,6 @@ const lightBeams = [
 
 export function MossHoverReveal({ children }: { children?: ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const targetRef = useRef({ x: 0, y: 0 });
-  const currentRef = useRef({ x: 0, y: 0 });
   const initializedRef = useRef(false);
   const trailRef = useRef<TrailPoint[]>([]);
   const lastTrailPointRef = useRef({ x: 0, y: 0 });
@@ -59,25 +57,17 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
 
   useEffect(() => {
     const tick = () => {
-      const ease = 0.22;
-      const dx = targetRef.current.x - currentRef.current.x;
-      const dy = targetRef.current.y - currentRef.current.y;
-
-      currentRef.current.x += dx * ease;
-      currentRef.current.y += dy * ease;
-
       const now = performance.now();
       const isIdle = now - lastMoveTimeRef.current > 110;
-      const decay = active && !isIdle ? 0.999 : 0.990;
+      const decay = active && !isIdle ? 0.985 : 0.92;
 
       trailRef.current = trailRef.current
         .map((point) => ({ ...point, life: point.life * decay }))
         .filter((point) => point.life > 0.025)
         .slice(-34);
 
-      setPos({ x: currentRef.current.x, y: currentRef.current.y });
       setTrail(trailRef.current);
-      setRadius((r) => r + ((active ? maxRadius : 0) - r) * 0.06);
+      setRadius(active ? maxRadius : 0);
       rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
@@ -95,14 +85,12 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
       y: e.clientY - rect.top,
     };
 
-    targetRef.current = nextTarget;
     lastMoveTimeRef.current = performance.now();
+    setPos(nextTarget);
 
     if (!initializedRef.current) {
       initializedRef.current = true;
-      currentRef.current = nextTarget;
       lastTrailPointRef.current = nextTarget;
-      setPos(nextTarget);
     }
 
     const distanceFromLastPoint = Math.hypot(
@@ -135,10 +123,14 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
       onMouseMove={handleMove}
       onMouseEnter={(e) => {
         setActive(true);
+        setRadius(maxRadius);
         handleMove(e);
       }}
-      onMouseLeave={() => setActive(false)}
-      className="relative min-h-screen w-full overflow-hidden cursor-none select-none"
+      onMouseLeave={() => {
+        setActive(false);
+        setRadius(0);
+      }}
+      className="relative min-h-screen w-full overflow-x-hidden cursor-none select-none lg:h-screen lg:overflow-hidden"
       style={{
         backgroundImage: "url(/dry.png)",
         backgroundSize: "cover",
@@ -246,7 +238,7 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
         <span className="forest-cursor-dot" />
       </div>
 
-      {children ? <div className="relative z-10 min-h-screen">{children}</div> : null}
+      {children ? <div className="relative z-10 min-h-screen lg:h-screen">{children}</div> : null}
     </div>
   );
 }
