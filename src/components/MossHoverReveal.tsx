@@ -51,7 +51,7 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
   const [isInteractive, setIsInteractive] = useState(false);
   const [reducedEffect, setReducedEffect] = useState(false);
 
-  const maxRadius = reducedEffect ? 150 : 190;
+  const maxRadius = reducedEffect ? 300 : 400;
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");

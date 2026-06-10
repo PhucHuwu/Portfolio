@@ -388,9 +388,6 @@
 @media (min-width: 1024px) {
   .projects-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-height: calc(100svh - 8rem);
-    overflow-y: auto;
-    padding-right: 0.25rem;
   }
 }
 
@@ -430,8 +427,7 @@
   justify-content: center;
   border-radius: 0.5rem;
   background: rgba(0, 0, 0, 0.32);
-  font-family: "Sentient", serif;
-  font-size: 1.25rem;
+  color: #f5ffe8;
 }
 
 .portfolio-input {

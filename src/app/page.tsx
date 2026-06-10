@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Mail, Globe, Phone, Code2, MapPin } from "lucide-react";
 import { MossHoverReveal } from "@/components/MossHoverReveal";
 
 const navItems = [
@@ -60,11 +61,11 @@ const projects = [
 ];
 
 const contactItems = [
-  { label: "Email", value: "phuctranhuu37@gmail.com", href: "mailto:phuctranhuu37@gmail.com", icon: "@" },
-  { label: "Facebook", value: "facebook.com/PhucHuwu", href: "https://facebook.com/PhucHuwu", icon: "f" },
-  { label: "Phone", value: "(+84) 368 334 223", href: "tel:+84368334223", icon: "p" },
-  { label: "GitHub", value: "github.com/PhucHuwu", href: "https://github.com/PhucHuwu", icon: "g" },
-  { label: "Location", value: "Hanoi, Vietnam", icon: "m" },
+  { label: "Email", value: "phuctranhuu37@gmail.com", href: "mailto:phuctranhuu37@gmail.com", icon: <Mail className="size-4" /> },
+  { label: "Facebook", value: "facebook.com/PhucHuwu", href: "https://facebook.com/PhucHuwu", icon: <Globe className="size-4" /> },
+  { label: "Phone", value: "(+84) 368 334 223", href: "tel:+84368334223", icon: <Phone className="size-4" /> },
+  { label: "GitHub", value: "github.com/PhucHuwu", href: "https://github.com/PhucHuwu", icon: <Code2 className="size-4" /> },
+  { label: "Location", value: "Hanoi, Vietnam", icon: <MapPin className="size-4" /> },
 ];
 
 export default function Home() {
@@ -134,7 +135,7 @@ export default function Home() {
             <div className="glass-panel mx-auto mt-6 inline-block px-4 py-2">
               <p className="font-mono text-sm text-foreground/80 sm:text-base">AI Engineering & Python Software Development</p>
             </div>
-            <button className="portfolio-button mt-14" onClick={() => scrollTo("contact")}>
+            <button className="portfolio-button mt-20 mb-4" onClick={() => scrollTo("contact")}>
               [Contact]
             </button>
           </div>
@@ -273,7 +274,7 @@ function ExternalButton({ href, children }: { href: string; children: React.Reac
   );
 }
 
-function ContactCard({ icon, label, value, href }: { icon: string; label: string; value: string; href?: string }) {
+function ContactCard({ icon, label, value, href }: { icon: ReactNode; label: string; value: string; href?: string }) {
   const content = (
     <div className="contact-card">
       <span className="contact-icon">{icon}</span>
