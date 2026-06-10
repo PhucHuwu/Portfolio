@@ -6,6 +6,26 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Mail, Globe, Phone, Code2, MapPin } from "lucide-react";
 import { MossHoverReveal } from "@/components/MossHoverReveal";
 
+function useScrollReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll(".anim-hidden, .anim-hidden-scale");
+    if (!els.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("anim-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
+
 const navItems = [
   { label: "Home", id: "home" },
   { label: "About", id: "about" },
@@ -72,6 +92,8 @@ export default function Home() {
   const slidesRef = useRef<HTMLElement | null>(null);
   const [activeId, setActiveId] = useState("home");
 
+  useScrollReveal();
+
   useEffect(() => {
     const el = slidesRef.current;
     if (!el) return;
@@ -130,12 +152,12 @@ export default function Home() {
       <main ref={slidesRef} className="slides" aria-label="Portfolio sections horizontal scroller">
         <section id="home" className="slide home-slide">
           <div className="hero-card text-center">
-            <p className="eyebrow">Portfolio</p>
-            <h1 className="font-sentient text-5xl sm:text-6xl md:text-7xl">Phuc Huwu</h1>
-            <div className="glass-panel mx-auto mt-6 block px-4 py-2">
+            <p className="eyebrow animate-fade-up" style={{ animationDelay: "0.1s" }}>Portfolio</p>
+            <h1 className="font-sentient text-5xl sm:text-6xl md:text-7xl animate-fade-up" style={{ animationDelay: "0.25s" }}>Phuc Huwu</h1>
+            <div className="glass-panel mx-auto mt-6 block px-4 py-2 animate-fade-up" style={{ animationDelay: "0.4s" }}>
               <p className="font-mono text-sm text-foreground/80 sm:text-base">AI Engineering & Python Software Development</p>
             </div>
-            <button className="portfolio-button mt-8" onClick={() => scrollTo("contact")}>
+            <button className="portfolio-button mt-8 animate-fade-up" style={{ animationDelay: "0.55s" }} onClick={() => scrollTo("contact")}>
               [Contact]
             </button>
           </div>
@@ -143,10 +165,10 @@ export default function Home() {
 
         <section id="about" className="slide about-slide">
           <div className="about-grid">
-            <div className="relative h-40 w-40 overflow-hidden rounded-full shadow-2xl shadow-white/10 sm:h-48 sm:w-48 md:h-64 md:w-64 lg:h-72 lg:w-72">
+            <div className="anim-hidden-scale relative h-40 w-40 overflow-hidden rounded-full shadow-2xl shadow-white/10 sm:h-48 sm:w-48 md:h-64 md:w-64 lg:h-72 lg:w-72" style={{ transitionDelay: "0.05s" }}>
               <Image src="/PhucHuwu.jpg" alt="Phuc Huwu" fill priority sizes="(min-width: 1024px) 288px, (min-width: 768px) 256px, (min-width: 640px) 192px, 160px" className="object-cover" />
             </div>
-            <div className="glass-panel max-w-3xl p-6 text-center sm:p-8 md:text-left">
+            <div className="glass-panel anim-hidden max-w-3xl p-6 text-center sm:p-8 md:text-left" style={{ transitionDelay: "0.15s" }}>
               <h2 className="font-sentient text-5xl sm:text-6xl md:text-7xl">Phuc Huwu</h2>
               <div className="mt-6 space-y-6 font-mono text-sm text-foreground/60 sm:text-base">
                 <p>
@@ -169,8 +191,8 @@ export default function Home() {
 
         <section id="projects" className="slide projects-slide">
           <div className="projects-grid">
-            {projects.map((project) => (
-              <article key={project.title} className="glass-panel flex h-full flex-col p-5 sm:p-6">
+            {projects.map((project, index) => (
+              <article key={project.title} className={`glass-panel anim-hidden flex h-full flex-col p-5 sm:p-6`} style={{ transitionDelay: `${0.06 * (index + 1)}s` }}>
                 <div className="flex-1">
                   <h2 className="font-sentient text-2xl sm:text-3xl md:text-4xl">{project.title}</h2>
                   <p className="mt-4 font-mono text-sm text-foreground/60">{project.description}</p>
@@ -195,7 +217,7 @@ export default function Home() {
 
         <section id="contact" className="slide contact-slide">
           <div className="contact-grid">
-            <div className="glass-panel p-6 sm:p-8">
+            <div className="glass-panel anim-hidden p-6 sm:p-8" style={{ transitionDelay: "0.05s" }}>
               <h2 className="font-sentient text-3xl sm:text-4xl">Phuc Huwu</h2>
               <p className="mt-6 font-mono text-sm text-foreground/60 sm:text-base">AI Engineering & Python Software Development</p>
               <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2">
@@ -204,7 +226,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="glass-panel p-6 sm:p-8">
+            <div className="glass-panel anim-hidden p-6 sm:p-8" style={{ transitionDelay: "0.18s" }}>
               <h2 className="font-sentient text-3xl sm:text-4xl">Send me a message</h2>
               <p className="mt-6 font-mono text-sm text-foreground/60 sm:text-base">Have a project or question? Drop a message and I&apos;ll get back to you.</p>
               <form className="mt-6 space-y-4" onSubmit={handleSubmit}>

@@ -273,6 +273,13 @@
 
 .glass-panel {
   border-radius: 1rem;
+  transition: transform 0.3s cubic-bezier(0.21, 0.98, 0.35, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-2px);
+  border-color: rgba(214, 229, 198, 0.28);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.44), 0 0 30px rgba(154, 178, 117, 0.08);
 }
 
 .hero-card {
@@ -523,6 +530,57 @@
   select {
     font-size: 16px !important;
   }
+}
+
+/* ── Animations ── */
+
+@keyframes fade-up {
+  0% { opacity: 0; transform: translateY(24px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scale-in {
+  0% { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.21, 0.98, 0.35, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s cubic-bezier(0.21, 0.98, 0.35, 1) forwards;
+}
+
+.anim-hidden {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.21, 0.98, 0.35, 1), transform 0.7s cubic-bezier(0.21, 0.98, 0.35, 1);
+}
+
+.anim-hidden.anim-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-hidden-scale {
+  opacity: 0;
+  transform: scale(0.93);
+  transition: opacity 0.6s cubic-bezier(0.21, 0.98, 0.35, 1), transform 0.6s cubic-bezier(0.21, 0.98, 0.35, 1);
+}
+
+.anim-hidden-scale.anim-visible {
+  opacity: 1;
+  transform: scale(1);
 }
 
 @keyframes dust-fall {
