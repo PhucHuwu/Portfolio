@@ -310,6 +310,75 @@
 
 }
 
+@media (pointer: coarse) and (min-width: 768px) and (max-width: 1180px) {
+  .desktop-moss-hover {
+    display: none;
+  }
+
+  .moss-bg::before {
+    background: #000;
+  }
+
+  .moss-bg::after {
+    display: none;
+  }
+
+  .mobile-moss-image {
+    display: block;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100svh;
+    z-index: 1;
+    pointer-events: none;
+    background-image: url("/dry.png");
+    background-size: auto 72svh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    mask-image: linear-gradient(180deg, transparent 0%, transparent 14%, rgba(0, 0, 0, 0.3) 20%, black 28%, black 72%, rgba(0, 0, 0, 0.3) 80%, transparent 86%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, transparent 14%, rgba(0, 0, 0, 0.3) 20%, black 28%, black 72%, rgba(0, 0, 0, 0.3) 80%, transparent 86%, transparent 100%);
+  }
+
+  .mobile-moss-fade {
+    display: block;
+    position: fixed;
+    z-index: 3;
+    background-image:
+      linear-gradient(180deg, #000 0%, #000 12%, rgba(0, 0, 0, 0.88) 20%, rgba(0, 0, 0, 0.24) 32%, transparent 42%),
+      linear-gradient(0deg, #000 0%, #000 12%, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0.24) 32%, transparent 42%);
+  }
+
+  .mobile-moss-sweep {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100svh;
+    pointer-events: none;
+    overflow: hidden;
+    mask-image: linear-gradient(180deg, transparent 0%, transparent 14%, rgba(0, 0, 0, 0.3) 20%, black 28%, black 72%, rgba(0, 0, 0, 0.3) 80%, transparent 86%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, transparent 14%, rgba(0, 0, 0, 0.3) 20%, black 28%, black 72%, rgba(0, 0, 0, 0.3) 80%, transparent 86%, transparent 100%);
+  }
+
+  .mobile-moss-sweep::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/fross.png");
+    background-size: auto 72svh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    mask-image: linear-gradient(102deg, transparent 0%, transparent 40%, rgba(0, 0, 0, 0.18) 45%, black 49%, black 51%, rgba(0, 0, 0, 0.18) 55%, transparent 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(102deg, transparent 0%, transparent 40%, rgba(0, 0, 0, 0.18) 45%, black 49%, black 51%, rgba(0, 0, 0, 0.18) 55%, transparent 60%, transparent 100%);
+    mask-size: 260% 100%;
+    -webkit-mask-size: 260% 100%;
+    mask-position: 130% 0;
+    -webkit-mask-position: 130% 0;
+    animation: mobile-moss-sweep-loop 5.8s linear infinite;
+  }
+}
+
 @keyframes mobile-moss-sweep-loop {
   0% {
     mask-position: 130% 0;
