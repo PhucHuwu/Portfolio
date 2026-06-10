@@ -205,6 +205,123 @@
   }
 }
 
+.moss-bg {
+  isolation: isolate;
+  background-color: #030604;
+}
+
+.moss-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #030604;
+  background-image: url("/dry.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.moss-bg::after {
+  content: "";
+  display: none;
+}
+
+.mobile-moss-image {
+  display: none;
+}
+
+.mobile-moss-sweep {
+  display: none;
+}
+
+.mobile-moss-fade {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .desktop-moss-hover {
+    display: none;
+  }
+
+  .moss-bg::before {
+    background: #000;
+  }
+
+  .moss-bg::after {
+    display: none;
+  }
+
+  .mobile-moss-image {
+    display: block;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100svh;
+    z-index: 1;
+    pointer-events: none;
+    background-image: url("/dry.png");
+    background-size: auto 116svh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    mask-image: linear-gradient(180deg, transparent 0%, black 16%, black 84%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 16%, black 84%, transparent 100%);
+  }
+
+  .mobile-moss-fade {
+    display: block;
+    position: fixed;
+    z-index: 3;
+    background-image:
+      linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.78) 12%, transparent 34%),
+      linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.8) 14%, transparent 36%);
+  }
+
+  .mobile-moss-sweep {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100svh;
+    pointer-events: none;
+    overflow: hidden;
+    mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 82%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 82%, transparent 100%);
+  }
+
+  .mobile-moss-sweep::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/fross.png");
+    background-size: auto 116svh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    mask-image: linear-gradient(102deg, transparent 0%, transparent 40%, rgba(0, 0, 0, 0.18) 45%, black 49%, black 51%, rgba(0, 0, 0, 0.18) 55%, transparent 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(102deg, transparent 0%, transparent 40%, rgba(0, 0, 0, 0.18) 45%, black 49%, black 51%, rgba(0, 0, 0, 0.18) 55%, transparent 60%, transparent 100%);
+    mask-size: 260% 100%;
+    -webkit-mask-size: 260% 100%;
+    mask-position: 130% 0;
+    -webkit-mask-position: 130% 0;
+    animation: mobile-moss-sweep-loop 5.8s linear infinite;
+  }
+
+}
+
+@keyframes mobile-moss-sweep-loop {
+  0% {
+    mask-position: 130% 0;
+    -webkit-mask-position: 130% 0;
+  }
+
+  100% {
+    mask-position: -130% 0;
+    -webkit-mask-position: -130% 0;
+  }
+}
+
 .slides {
   display: flex;
   flex-direction: column;

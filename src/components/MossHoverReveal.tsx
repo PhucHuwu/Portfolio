@@ -157,14 +157,10 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
         setActive(false);
         startTrailDecay();
       }}
-      className="relative min-h-screen w-full overflow-x-hidden cursor-none select-none lg:h-screen lg:overflow-hidden"
-      style={{
-        backgroundImage: "url(/dry.png)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="moss-bg relative min-h-screen w-full overflow-x-hidden cursor-none select-none lg:h-screen lg:overflow-hidden"
     >
-      <svg className="pointer-events-none absolute inset-0 size-full" aria-hidden="true">
+      <div className="mobile-moss-image" aria-hidden="true" />
+      <svg className="desktop-moss-hover pointer-events-none absolute inset-0 size-full" aria-hidden="true">
         <defs>
           <radialGradient id="hover-reveal-gradient">
             <stop offset="0%" stopColor="white" stopOpacity="1" />
@@ -206,8 +202,11 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
         />
       </svg>
 
+      <div className="mobile-moss-sweep" aria-hidden="true" />
+
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[34vh] bg-gradient-to-b from-black/85 via-black/45 to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[34vh] bg-gradient-to-t from-black/85 via-black/45 to-transparent" />
+      <div className="mobile-moss-fade pointer-events-none absolute inset-0" />
 
       {!reducedEffect ? <div className="pointer-events-none absolute inset-0 overflow-hidden mix-blend-screen" aria-hidden="true">
         <div className="forest-light-canopy" />
