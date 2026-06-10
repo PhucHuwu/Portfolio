@@ -9,7 +9,7 @@ type TrailPoint = {
   life: number;
 };
 
-const dustParticles = Array.from({ length: 42 }, (_, index) => {
+const dustParticles = Array.from({ length: 18 }, (_, index) => {
   const sizes = [1, 1.5, 2, 2.5, 3, 1.5, 2, 3.5];
   const opacities = [0.2, 0.26, 0.18, 0.3, 0.22, 0.16, 0.28];
   const blurs = [0.4, 0.7, 1, 0.5, 1.2, 0.8];
@@ -32,9 +32,7 @@ const dustParticles = Array.from({ length: 42 }, (_, index) => {
 
 const lightBeams = [
   { left: 4, top: -28, width: 16, height: 96, rotate: 15, opacity: 0.18, duration: 28, delay: -9 },
-  { left: 24, top: -32, width: 11, height: 82, rotate: 8, opacity: 0.12, duration: 36, delay: -24 },
   { left: 46, top: -30, width: 18, height: 104, rotate: -9, opacity: 0.15, duration: 32, delay: -5 },
-  { left: 68, top: -26, width: 20, height: 98, rotate: -18, opacity: 0.14, duration: 41, delay: -31 },
   { left: 84, top: -34, width: 10, height: 76, rotate: -12, opacity: 0.1, duration: 45, delay: -18 },
 ];
 
@@ -51,11 +49,31 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
   const [trail, setTrail] = useState<TrailPoint[]>([]);
   const [active, setActive] = useState(false);
   const [isInteractive, setIsInteractive] = useState(false);
-  const [radius, setRadius] = useState(0);
+  const [reducedEffect, setReducedEffect] = useState(false);
 
-  const maxRadius = 190;
+  const maxRadius = reducedEffect ? 150 : 190;
 
   useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMode = () => {
+      const lowCpu = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 4 : false;
+      const compactScreen = window.innerWidth < 1024;
+      setReducedEffect(media.matches || lowCpu || compactScreen);
+    };
+
+    updateMode();
+    media.addEventListener("change", updateMode);
+    window.addEventListener("resize", updateMode);
+
+    return () => {
+      media.removeEventListener("change", updateMode);
+      window.removeEventListener("resize", updateMode);
+    };
+  }, []);
+
+  const startTrailDecay = () => {
+    if (reducedEffect || rafRef.current) return;
+
     const tick = () => {
       const now = performance.now();
       const isIdle = now - lastMoveTimeRef.current > 110;
@@ -66,15 +84,23 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
         .filter((point) => point.life > 0.025)
         .slice(-34);
 
-      setTrail(trailRef.current);
-      setRadius(active ? maxRadius : 0);
-      rafRef.current = requestAnimationFrame(tick);
+      if (trailRef.current.length > 0) {
+        setTrail(trailRef.current);
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        setTrail([]);
+        rafRef.current = null;
+      }
     };
+
     rafRef.current = requestAnimationFrame(tick);
+  };
+
+  useEffect(() => {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [active]);
+  }, []);
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = containerRef.current?.getBoundingClientRect();
@@ -98,7 +124,7 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
       nextTarget.y - lastTrailPointRef.current.y,
     );
 
-    if (distanceFromLastPoint > 8) {
+    if (!reducedEffect && distanceFromLastPoint > 14) {
       trailRef.current = [
         ...trailRef.current,
         {
@@ -107,15 +133,17 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
           y: nextTarget.y,
           life: 1,
         },
-      ].slice(-34);
+      ].slice(-14);
       lastTrailPointRef.current = nextTarget;
+      setTrail(trailRef.current);
+      startTrailDecay();
     }
 
     const target = e.target as HTMLElement | null;
     setIsInteractive(Boolean(target?.closest("a, button, input, textarea, select, [role='button']")));
   };
 
-  const r = Math.max(0, radius);
+  const r = active ? maxRadius : 0;
 
   return (
     <div
@@ -123,12 +151,11 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
       onMouseMove={handleMove}
       onMouseEnter={(e) => {
         setActive(true);
-        setRadius(maxRadius);
         handleMove(e);
       }}
       onMouseLeave={() => {
         setActive(false);
-        setRadius(0);
+        startTrailDecay();
       }}
       className="relative min-h-screen w-full overflow-x-hidden cursor-none select-none lg:h-screen lg:overflow-hidden"
       style={{
@@ -147,7 +174,7 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
           </radialGradient>
           <mask id="hover-reveal-mask" maskUnits="userSpaceOnUse">
             <rect width="100%" height="100%" fill="black" />
-            {trail.map((point, index) => {
+            {!reducedEffect && trail.map((point, index) => {
               const age = index / Math.max(trail.length - 1, 1);
               const tailRadius = r * (0.18 + age * 0.48) * point.life;
 
@@ -182,7 +209,7 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[34vh] bg-gradient-to-b from-black/85 via-black/45 to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[34vh] bg-gradient-to-t from-black/85 via-black/45 to-transparent" />
 
-      <div className="pointer-events-none absolute inset-0 overflow-hidden mix-blend-screen" aria-hidden="true">
+      {!reducedEffect ? <div className="pointer-events-none absolute inset-0 overflow-hidden mix-blend-screen" aria-hidden="true">
         <div className="forest-light-canopy" />
         {lightBeams.map((beam, index) => (
           <span
@@ -202,9 +229,9 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
             }
           />
         ))}
-      </div>
+      </div> : null}
 
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      {!reducedEffect ? <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         {dustParticles.map((particle, index) => (
           <span
             key={index}
@@ -225,7 +252,7 @@ export function MossHoverReveal({ children }: { children?: ReactNode }) {
             }
           />
         ))}
-      </div>
+      </div> : null}
 
       <div
         className={`forest-cursor ${active ? "forest-cursor-active" : ""} ${isInteractive ? "forest-cursor-interactive" : ""}`}
