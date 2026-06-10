@@ -143,7 +143,7 @@ export default function Home() {
         <section id="about" className="slide about-slide">
           <div className="about-grid">
             <div className="relative h-40 w-40 overflow-hidden rounded-full shadow-2xl shadow-white/10 sm:h-48 sm:w-48 md:h-64 md:w-64 lg:h-72 lg:w-72">
-              <Image src="/PhucHuwu.jpg" alt="Phuc Huwu" fill priority className="object-cover" />
+              <Image src="/PhucHuwu.jpg" alt="Phuc Huwu" fill priority sizes="(min-width: 1024px) 288px, (min-width: 768px) 256px, (min-width: 640px) 192px, 160px" className="object-cover" />
             </div>
             <div className="glass-panel max-w-3xl p-6 text-center sm:p-8 md:text-left">
               <h2 className="font-sentient text-5xl sm:text-6xl md:text-7xl">Phuc Huwu</h2>
